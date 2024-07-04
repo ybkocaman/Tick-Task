@@ -8,17 +8,31 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
-}
+    
+    @State private var isShowingAddSheet = false
 
-#Preview {
-    ContentView()
+    var body: some View {
+        NavigationStack {
+            TaskListView()
+                .navigationTitle("TickTask")
+                .toolbar {
+                    Button("Add Task", systemImage: "plus") { isShowingAddSheet.toggle() }
+                    
+                    Menu {
+                        NavigationLink {
+                            PreviousTaskListView()
+                        } label: {
+                            HStack {
+                                Text("Previous Tasks")
+                                Image(systemName: "clock")
+                            }
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis")
+                    }
+
+                }
+                .sheet(isPresented: $isShowingAddSheet) { AddTaskView() }
+        }
+    }
 }

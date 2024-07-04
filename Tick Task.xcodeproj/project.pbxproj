@@ -11,6 +11,13 @@
 		46FAD75C2C314AD1009704CD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FAD75B2C314AD1009704CD /* ContentView.swift */; };
 		46FAD75E2C314AD3009704CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46FAD75D2C314AD3009704CD /* Assets.xcassets */; };
 		46FAD7612C314AD3009704CD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46FAD7602C314AD3009704CD /* Preview Assets.xcassets */; };
+		46FAD76F2C315E65009704CD /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FAD76E2C315E65009704CD /* AddTaskView.swift */; };
+		46FAD7712C31847C009704CD /* EditTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FAD7702C31847C009704CD /* EditTaskView.swift */; };
+		46FAD7742C319DEE009704CD /* TickTask.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 46FAD7722C319DEE009704CD /* TickTask.xcdatamodeld */; };
+		46FAD7762C319EF1009704CD /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FAD7752C319EF1009704CD /* DataController.swift */; };
+		46FAD7782C341ACD009704CD /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FAD7772C341ACD009704CD /* TaskListView.swift */; };
+		46FAD77A2C36B044009704CD /* TaskRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FAD7792C36B044009704CD /* TaskRow.swift */; };
+		46FAD77C2C36D5B6009704CD /* PreviousTaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FAD77B2C36D5B6009704CD /* PreviousTaskListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +26,13 @@
 		46FAD75B2C314AD1009704CD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		46FAD75D2C314AD3009704CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		46FAD7602C314AD3009704CD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		46FAD76E2C315E65009704CD /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
+		46FAD7702C31847C009704CD /* EditTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskView.swift; sourceTree = "<group>"; };
+		46FAD7732C319DEE009704CD /* TickTask.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TickTask.xcdatamodel; sourceTree = "<group>"; };
+		46FAD7752C319EF1009704CD /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		46FAD7772C341ACD009704CD /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
+		46FAD7792C36B044009704CD /* TaskRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRow.swift; sourceTree = "<group>"; };
+		46FAD77B2C36D5B6009704CD /* PreviousTaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousTaskListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,10 +65,14 @@
 		46FAD7582C314AD1009704CD /* Tick Task */ = {
 			isa = PBXGroup;
 			children = (
+				46FAD7722C319DEE009704CD /* TickTask.xcdatamodeld */,
+				46FAD7672C314C4D009704CD /* Model */,
+				46FAD7682C314C56009704CD /* View */,
 				46FAD7592C314AD1009704CD /* Tick_TaskApp.swift */,
 				46FAD75B2C314AD1009704CD /* ContentView.swift */,
 				46FAD75D2C314AD3009704CD /* Assets.xcassets */,
 				46FAD75F2C314AD3009704CD /* Preview Content */,
+				46FAD7752C319EF1009704CD /* DataController.swift */,
 			);
 			path = "Tick Task";
 			sourceTree = "<group>";
@@ -65,6 +83,25 @@
 				46FAD7602C314AD3009704CD /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		46FAD7672C314C4D009704CD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		46FAD7682C314C56009704CD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				46FAD76E2C315E65009704CD /* AddTaskView.swift */,
+				46FAD7702C31847C009704CD /* EditTaskView.swift */,
+				46FAD7772C341ACD009704CD /* TaskListView.swift */,
+				46FAD77B2C36D5B6009704CD /* PreviousTaskListView.swift */,
+				46FAD7792C36B044009704CD /* TaskRow.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +175,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				46FAD75C2C314AD1009704CD /* ContentView.swift in Sources */,
+				46FAD76F2C315E65009704CD /* AddTaskView.swift in Sources */,
+				46FAD7712C31847C009704CD /* EditTaskView.swift in Sources */,
+				46FAD77C2C36D5B6009704CD /* PreviousTaskListView.swift in Sources */,
+				46FAD77A2C36B044009704CD /* TaskRow.swift in Sources */,
+				46FAD7762C319EF1009704CD /* DataController.swift in Sources */,
 				46FAD75A2C314AD1009704CD /* Tick_TaskApp.swift in Sources */,
+				46FAD7742C319DEE009704CD /* TickTask.xcdatamodeld in Sources */,
+				46FAD7782C341ACD009704CD /* TaskListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +388,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		46FAD7722C319DEE009704CD /* TickTask.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				46FAD7732C319DEE009704CD /* TickTask.xcdatamodel */,
+			);
+			currentVersion = 46FAD7732C319DEE009704CD /* TickTask.xcdatamodel */;
+			path = TickTask.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 46FAD74E2C314AD1009704CD /* Project object */;
 }
