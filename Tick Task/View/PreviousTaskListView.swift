@@ -14,7 +14,7 @@ struct PreviousTaskListView: View {
     var body: some View {
         VStack {
             List {
-                ForEach(groupedTasks.keys.sorted(), id: \.self) { date in
+                ForEach(groupedTasks.keys.sorted(by: >), id: \.self) { date in
                     Section {
                         ForEach(groupedTasks[date]!) { task in
                             TaskRow(task: task)
