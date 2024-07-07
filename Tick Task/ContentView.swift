@@ -14,7 +14,7 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             TaskListView()
-                .navigationTitle("TickTask")
+                .navigationTitle("Tick Task")
                 .toolbar {
                     Button("Add Task", systemImage: "plus") { isShowingAddSheet.toggle() }
                     

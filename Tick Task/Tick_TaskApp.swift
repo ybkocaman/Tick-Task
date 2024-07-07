@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct Tick_TaskApp: App {
-    @StateObject private var dataController = DataController()
+    @StateObject private var dataController = PersistenceController()
     
     var body: some Scene {
         WindowGroup {

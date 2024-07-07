@@ -13,9 +13,7 @@ struct TaskRow: View {
     @ObservedObject var task: Task
     
     var body: some View {
-        NavigationLink {
-            EditTaskView(task: task)
-        } label: {
+        NavigationLink (destination: EditTaskView(task: task)) {
             HStack(alignment: .center) {
                 
                 Image(systemName: task.isCompleted ? "checkmark.square" : "square")
@@ -24,6 +22,9 @@ struct TaskRow: View {
                         withAnimation { task.isCompleted.toggle() }
                         try? moc.save()
                     }
+                
+                Image(systemName: "\(task.priority).circle.fill")
+                    .font(.title)
                 
                 VStack(alignment: .leading) {
                     Text(task.name ?? "Task name not available")
@@ -38,7 +39,5 @@ struct TaskRow: View {
             }
             .foregroundStyle(task.isCompleted ? .green : .primary)
         }
-
-
     }
 }
