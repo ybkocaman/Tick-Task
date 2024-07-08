@@ -18,6 +18,8 @@ struct EditTaskView: View {
     @State private var dueDate: Date
     @State private var priority: Int16
     
+    @State private var isShowingAlert = false
+    
     init(task: Task) {
         _name = State(initialValue: task.name ?? "")
         _taskDescription = State(initialValue: task.taskDescription ?? "")
@@ -50,7 +52,7 @@ struct EditTaskView: View {
                     .padding()
                     .background(Color(.systemGray6))
                     .clipShape(.rect(cornerRadius: 20))
-                    .shadow(radius: 5)
+                    .shadow(radius: 1)
                     .padding()
                     
                     
@@ -75,8 +77,8 @@ struct EditTaskView: View {
                     .padding(.vertical, 11)
                     .background(getPriorityColor(priority: priority).opacity(0.7))
                     .clipShape(.rect(cornerRadius: 20))
-                    .shadow(radius: 5)
-                    .padding()
+                    .shadow(radius: 1)
+                    .padding(.horizontal)
                     
                     
                     HStack {
@@ -87,53 +89,72 @@ struct EditTaskView: View {
                     .padding(.vertical, 10)
                     .background(Color(.systemGray6))
                     .clipShape(.rect(cornerRadius: 20))
-                    .shadow(radius: 5)
+                    .shadow(radius: 1)
                     .padding()
                     
                     
                     
-                    HStack {
+                    VStack(spacing: 15) {
+                        
                         Button {
                             task.isCompleted.toggle()
                         } label: {
-                            Text(task.isCompleted ? "Mark Uncompleted" : "Mark Completed")
-                                .bold()
-                                .foregroundStyle(.white)
-                                .padding(15)
-                                .background(task.isCompleted ? .black : .green)
-                                .clipShape(.rect(cornerRadius: 20))
-                                .padding(.vertical)
-                                .padding(.leading)
-                        }
-                        Spacer()
-                        Button {
+                            HStack {
+                                Image(systemName: task.isCompleted ? "square" : "checkmark.square")
+                                Text(task.isCompleted ? "Mark Uncompleted" : "Mark Completed")
+                            }
+                            .frame(maxWidth: .infinity)
+                            .bold()
+                            .foregroundStyle(.white)
+                            .padding(9)
+                            .background(task.isCompleted ? .black : .green)
+                            .clipShape(Capsule())
                             
+                        }
+                        
+                        
+                        Button {
+                            isShowingAlert.toggle()
                         } label: {
                             HStack {
                                 Image(systemName: "trash")
                                 Text("Delete Task")
                             }
+                            .frame(maxWidth: .infinity)
+
                             .foregroundStyle(.red)
-                            .padding(15)
+                            .padding(9)
                             .overlay(
-                                RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
+                                Capsule()
                                     .stroke(Color.red, lineWidth: 3)
                             )
-                            .clipShape(.rect(cornerRadius: 20))
-                            .padding(.vertical)
-                            .padding(.trailing)
+                            .clipShape(Capsule())
+                        }
+                        
+                        
+                        Button {
+                            saveTask()
+                        } label: {
+                            Text("Save")
+                                .bold()
+                                .frame(maxWidth: .infinity)
+                                .foregroundStyle(.white)
+                                .padding(9)
+                                .background(.blue)
+                                .clipShape(Capsule())
+                        }
                     }
-                    }
-                    
+                    .padding()
                 }
                 .padding()
 
             }
             .navigationTitle("Edit Task")
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("Save") { saveTask() }
-                }
+//            .background(Color.green.opacity(0.5))
+            .alert("WARNING", isPresented: $isShowingAlert) {
+                Button("Delete", role: .destructive) { deleteTask() }
+            } message: {
+                Text("Are you sure about deleting this task?")
             }
         }
     }
@@ -143,6 +164,12 @@ struct EditTaskView: View {
         task.taskDescription = taskDescription
         task.dueDate = dueDate
         task.priority = priority
+        try? moc.save()
+        dismiss()
+    }
+    
+    private func deleteTask() {
+        moc.delete(task)
         try? moc.save()
         dismiss()
     }

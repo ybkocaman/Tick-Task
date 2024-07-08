@@ -85,6 +85,7 @@ struct AddTaskView: View {
                 .padding()
             }
             
+//            .background(Color.green.opacity(0.5))
             .navigationTitle("Add a task")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {

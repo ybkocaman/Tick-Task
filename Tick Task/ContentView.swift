@@ -16,6 +16,7 @@ struct ContentView: View {
         NavigationStack {
             ScrollView {
                 TaskListView()
+//                    .background(Color.cyan.opacity(0.5))
                     .navigationTitle("Tick Task")
                     .toolbar {
                         Button("Add Task", systemImage: "plus") { isShowingAddSheet.toggle() }
