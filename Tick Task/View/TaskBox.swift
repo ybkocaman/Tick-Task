@@ -8,49 +8,19 @@
 import SwiftUI
 
 struct TaskBox: View {
-    
-    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Task.dueDate, ascending: true)]) var tasks: FetchedResults<Task>
+    @Environment(\.managedObjectContext) private var moc
+    var tasks: [Task]
+    var date: Date
     
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 15) {
                 HStack {
-                    Text("Today")
-                    Text("• Sunday")
-                        .foregroundStyle(.secondary)
+                    Text(dateFormatted(date))
+                    Spacer()
                 }
                 ForEach(tasks) { task in
-                    HStack {
-                        let priorityColor = getPriorityColor(priority: task.priority)
-                        Image(systemName: task.isCompleted ? "checkmark.square" : "square")
-                            .font(.title)
-                        VStack(alignment: .leading) {
-                            HStack {
-                                Text(task.name ?? "Task name unavailable")
-                                    .bold()
-                                Text("8pm")
-                                Spacer()
-                            }
-                            Text(task.taskDescription ?? "")
-                                .foregroundStyle(.secondary)
-                        }
-                        .strikethrough(task.isCompleted)
-                        Image(systemName: "square.fill")
-                            .foregroundStyle(priorityColor.opacity(0.7))
-                            .font(.title)
-                        
-
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding(10)
-                    .background(task.isCompleted ? .gray.opacity(0.3) : .white)
-                    .overlay(
-                        RoundedRectangle(cornerSize: CGSize(width: 10, height: 10))
-                            .stroke(Color.gray, lineWidth: 3) // Border color and width
-                    )
-//                    .background(Color(.blue).opacity(0.5))
-                    .clipShape(.rect(cornerRadius: 10))
-                    
+                    TaskRow(task: task)
                 }
             }
             Spacer()
@@ -58,41 +28,34 @@ struct TaskBox: View {
         }
         .padding()
         .background(Color(.systemGray6))
-        .clipShape(.rect(cornerRadius: 15))
-        .shadow(radius: 10)
-//        VStack(alignment: .leading) {
-//            ForEach(tasks, id: \.id) { task in
-//                HStack {
-//                    Text(task.name ?? "")
-//                        .font(.headline)
-//                    Spacer()
-//                    if task.isCompleted {
-//                        Image(systemName: "checkmark.circle")
-//                    }
-//                }
-//                Text(task.taskDescription ?? "")
-//                    .font(.subheadline)
-//            }
-//        }
-//        .padding()
-//        .background(Color(.systemGray6))
-//        .cornerRadius(8)
+        .clipShape(.rect(cornerRadius: 20))
+        .shadow(radius: 5)
+        .padding()
     }
     
-    func getPriorityColor(priority: Int16) -> Color {
-        if priority == 1 {
-            return .red
-        } else if priority == 2 {
-            return .yellow
+    private func dateFormatted(_ date: Date) -> String {
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        let tomorrow = calendar.date(byAdding: .day, value: 1, to: today)!
+        let formatter = DateFormatter()
+
+        if calendar.isDate(date, inSameDayAs: today) {
+            formatter.dateFormat = "EEEE"
+            let day = formatter.string(from: date)
+            return "Today • \(day)"
+        } else if calendar.isDate(date, inSameDayAs: tomorrow) {
+            formatter.dateFormat = "EEEE"
+            let day = formatter.string(from: date)
+            return "Tomorrow • \(day)"
         } else {
-            return .blue
+            formatter.dateFormat = "d MMMM, EEEE"
+            return formatter.string(from: date)
         }
     }
 }
 
 #Preview {
-    TaskBox()
+    TaskBox(tasks: [Task(context: PersistenceController.preview.container.viewContext)], date: Date())
         .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         .previewLayout(.sizeThatFits)
-        .padding()
 }

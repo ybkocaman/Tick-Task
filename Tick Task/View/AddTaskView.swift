@@ -15,44 +15,74 @@ struct AddTaskView: View {
     @State private var name = ""
     @State private var taskDescription = ""
     @State private var dueDate = Date()
-    @State private var priority = 2
+    @State private var priority: Int16 = 2
     
     var body: some View {
         NavigationStack {
             
-            Form {
-                Section("Task Name") {
-                    TextField("Enter Task Name Here...", text: $name)
-                }
-                Section("Task Description") {
-                    TextField("Enter Task Description Here...", text: $taskDescription)
-                }
-                Section {
-                    Picker("Priority", selection: $priority) {
-                        HStack {
-                            Text("1")
-                            Image(systemName: "circle.fill")
-                                .tint(.red)
-                        }.tag(1)
-
-                        HStack {
-                            Text("2")
-                            Image(systemName: "circle.fill")
-                                .tint(.yellow)
-                        }.tag(2)
-                        
-                        HStack {
-                            Text("3")
-                            Image(systemName: "circle.fill")
-                                .tint(.blue)
-                        }.tag(3)
-
+            ScrollView {
+                VStack(alignment: .leading) {
+                    VStack(alignment: .leading) {
+                        Text("Task Name")
+                            .bold()
+                        TextField("Enter Task Name Here...", text: $name)
+                            .padding(10)
+                            .background(Color.white)
+                            .clipShape(.rect(cornerRadius: 10))
+                        Divider()
+                            .padding(.vertical, 10)
+                        Text("Task Description")
+                            .bold()
+                        TextField("Enter Task Description Here...", text: $taskDescription)
+                            .padding(10)
+                            .background(Color.white)
+                            .clipShape(.rect(cornerRadius: 10))
                     }
+                    .padding()
+                    .background(Color(.systemGray6))
+                    .clipShape(.rect(cornerRadius: 20))
+                    .shadow(radius: 5)
+                    .padding()
+                    
+                    
+                    HStack {
+                        Text("Priority")
+                            .bold()
+                            .foregroundStyle(.white)
+                        Spacer()
+                        Picker("Priority", selection: $priority) {
+                            Text("High")
+                                .tag(Int16(1))
+                            
+                            Text("Medium")
+                                .tag(Int16(2))
+                            
+                            Text("Low")
+                                .tag(Int16(3))
+                        }
+                        .tint(.white)
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 11)
+                    .background(getPriorityColor(priority: priority).opacity(0.7))
+                    .clipShape(.rect(cornerRadius: 20))
+                    .shadow(radius: 5)
+                    .padding()
+                    
+                    
+                    HStack {
+                        DatePicker("Due Date", selection: $dueDate, displayedComponents: .date)
+                            .background(Color.gray.opacity(0))
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 10)
+                    .background(Color(.systemGray6))
+                    .clipShape(.rect(cornerRadius: 20))
+                    .shadow(radius: 5)
+                    .padding()
+                    
                 }
-                Section {
-                    DatePicker("Select Due Date", selection: $dueDate, displayedComponents: .date)
-                }
-                
+                .padding()
             }
             
             .navigationTitle("Add a task")
@@ -76,5 +106,16 @@ struct AddTaskView: View {
         newTask.priority = Int16(priority)
         try? moc.save()
         dismiss()
+    }
+    
+    private func getPriorityColor(priority: Int16) -> Color {
+        switch priority {
+        case 1:
+            return .red
+        case 2:
+            return .yellow
+        default:
+            return .blue
+        }
     }
 }

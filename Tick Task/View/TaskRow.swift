@@ -13,31 +13,60 @@ struct TaskRow: View {
     @ObservedObject var task: Task
     
     var body: some View {
-        NavigationLink (destination: EditTaskView(task: task)) {
-            HStack(alignment: .center) {
-                
+        NavigationLink {
+            EditTaskView(task: task)
+        } label: {
+            
+            HStack {
+                let priorityColor = getPriorityColor(priority: task.priority)
                 Image(systemName: task.isCompleted ? "checkmark.square" : "square")
-                    .font(.title.bold())
-                    .onTapGesture {
-                        withAnimation { task.isCompleted.toggle() }
-                        try? moc.save()
-                    }
-                
-                Image(systemName: "\(task.priority).circle.fill")
+                    .foregroundStyle(.gray)
                     .font(.title)
-                
+                    .onTapGesture { toggleTaskCompletion(task) }
                 VStack(alignment: .leading) {
-                    Text(task.name ?? "Task name not available")
-                        .font(.title3.bold())
-                    Text(task.taskDescription ?? "Description not available")
-                        .font(.subheadline)
+                    HStack {
+                        Text(task.name ?? "Task name unavailable")
+                            .bold()
+                        Text("8pm")
+                        Spacer()
+                    }
+                    Text(task.taskDescription ?? "")
                         .foregroundStyle(.secondary)
                 }
+                .foregroundStyle(.black)
                 .strikethrough(task.isCompleted)
-                .padding(5)
-
+                Image(systemName: "square.fill")
+                    .foregroundStyle(priorityColor.opacity(0.7))
+                    .font(.title3)
+                
+                
             }
-            .foregroundStyle(task.isCompleted ? .green : .primary)
+            .opacity(task.isCompleted ? 0.5 : 1)
+            .frame(maxWidth: .infinity)
+            .padding(10)
+            .background(task.isCompleted ? .gray.opacity(0.1) : .white)
+            .overlay(
+                RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
+                    .stroke(Color.gray.opacity(0.3), lineWidth: 3)
+            )
+            .clipShape(.rect(cornerRadius: 20))
         }
+    }
+    
+    
+    private func getPriorityColor(priority: Int16) -> Color {
+        switch priority {
+        case 1:
+            return .red
+        case 2:
+            return .yellow
+        default:
+            return .blue
+        }
+    }
+    
+    func toggleTaskCompletion(_ task: Task) {
+        task.isCompleted.toggle()
+        try? moc.save()
     }
 }
