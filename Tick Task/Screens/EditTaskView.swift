@@ -37,11 +37,13 @@ struct EditTaskView: View {
             
             ScrollView {
                 
-                    TaskNameAndDescriptionBoxView(name: $name, taskDescription: $taskDescription)
+                TaskNameAndDescriptionBoxView(name: $name, taskDescription: $taskDescription)
                     .padding()
-                    PriorityBoxView(priority: $priority)
+                
+                PriorityBoxView(priority: $priority)
                     .padding(.horizontal)
-                    TaskDateAndTimeBoxView(dueDate: $dueDate, isDueTime: $isDueTime, dueTime: $dueTime)
+                
+                TaskDateAndTimeBoxView(dueDate: $dueDate, isDueTime: $isDueTime, dueTime: $dueTime)
                     .padding()
                 
                     VStack(spacing: 15) {
@@ -49,19 +51,25 @@ struct EditTaskView: View {
                         Button {
                             task.isCompleted.toggle()
                         } label: {
-                            CompletionButton(isCompleted: task.isCompleted)
+                            
+                            if task.isCompleted {
+                                AppButton(title: "Mark Uncompleted", systemName: "square", isFilledBackground: true, fontColor: .white, buttonColor: .black)
+                            } else {
+                                AppButton(title: "Mark Completed", systemName: "checkmark.square", isFilledBackground: true, fontColor: .white, buttonColor: .green)
+                            }
+                            
                         }
                         
                         Button {
                             isShowingAlert.toggle()
                         } label: {
-                            DeleteTaskButton()
+                            AppButton(title: "Delete Task", systemName: "trash", isFilledBackground: false, fontColor: .red, buttonColor: .red)
                         }
                         
                         Button {
                             saveTask()
                         } label: {
-                            SaveTaskButton()
+                            AppButton(title: "Save", isFilledBackground: true, fontColor: .white, buttonColor: .blue)
                         }
                     }
                     .padding()

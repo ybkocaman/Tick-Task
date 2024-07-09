@@ -33,7 +33,7 @@ struct AddTaskView: View {
                 Button {
                     addTask()
                 } label: {
-                    AddTaskButton()
+                    AppButton(title: "Add Task", isFilledBackground: true, fontColor: .white, buttonColor: .blue)
                 }
                 .padding()
             }
