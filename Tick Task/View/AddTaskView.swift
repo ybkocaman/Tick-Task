@@ -40,8 +40,11 @@ struct AddTaskView: View {
                     }
                     .padding()
                     .background(Color(.systemGray6))
-                    .clipShape(.rect(cornerRadius: 20))
-                    .shadow(radius: 5)
+                    .overlay(
+                        RoundedRectangle(cornerSize: CGSize(width: 15, height: 15))
+                            .stroke(Color.black, lineWidth: 3)
+                    )
+                    .clipShape(.rect(cornerRadius: 15))
                     .padding()
                     
                     
@@ -65,8 +68,11 @@ struct AddTaskView: View {
                     .padding(.horizontal)
                     .padding(.vertical, 11)
                     .background(getPriorityColor(priority: priority).opacity(0.7))
-                    .clipShape(.rect(cornerRadius: 20))
-                    .shadow(radius: 5)
+                    .overlay(
+                        RoundedRectangle(cornerSize: CGSize(width: 15, height: 15))
+                            .stroke(Color.black, lineWidth: 3)
+                    )
+                    .clipShape(.rect(cornerRadius: 15))
                     .padding()
                     
                     
@@ -77,15 +83,17 @@ struct AddTaskView: View {
                     .padding(.horizontal)
                     .padding(.vertical, 10)
                     .background(Color(.systemGray6))
-                    .clipShape(.rect(cornerRadius: 20))
-                    .shadow(radius: 5)
+                    .overlay(
+                        RoundedRectangle(cornerSize: CGSize(width: 15, height: 15))
+                            .stroke(Color.black, lineWidth: 3)
+                    )
+                    .clipShape(.rect(cornerRadius: 15))
                     .padding()
                     
                 }
                 .padding()
             }
             
-//            .background(Color.green.opacity(0.5))
             .navigationTitle("Add a task")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -95,6 +103,7 @@ struct AddTaskView: View {
                     Button("Cancel") { dismiss() }
                 }
             }
+            .background(Color.green.opacity(0.3))
         }
     }
     

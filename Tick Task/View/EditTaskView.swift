@@ -51,8 +51,11 @@ struct EditTaskView: View {
                     }
                     .padding()
                     .background(Color(.systemGray6))
-                    .clipShape(.rect(cornerRadius: 20))
-                    .shadow(radius: 1)
+                    .overlay(
+                        RoundedRectangle(cornerSize: CGSize(width: 15, height: 15))
+                            .stroke(Color.black, lineWidth: 3)
+                    )
+                    .clipShape(.rect(cornerRadius: 15))
                     .padding()
                     
                     
@@ -76,7 +79,12 @@ struct EditTaskView: View {
                     .padding(.horizontal)
                     .padding(.vertical, 11)
                     .background(getPriorityColor(priority: priority).opacity(0.7))
-                    .clipShape(.rect(cornerRadius: 20))
+                    .overlay(
+                        RoundedRectangle(cornerSize: CGSize(width: 15, height: 15))
+                            .stroke(Color.black, lineWidth: 3)
+                    )
+                    .clipShape(.rect(cornerRadius: 15))
+                    
                     .shadow(radius: 1)
                     .padding(.horizontal)
                     
@@ -88,10 +96,12 @@ struct EditTaskView: View {
                     .padding(.horizontal)
                     .padding(.vertical, 10)
                     .background(Color(.systemGray6))
-                    .clipShape(.rect(cornerRadius: 20))
-                    .shadow(radius: 1)
+                    .overlay(
+                        RoundedRectangle(cornerSize: CGSize(width: 15, height: 15))
+                            .stroke(Color.black, lineWidth: 3)
+                    )
+                    .clipShape(.rect(cornerRadius: 15))
                     .padding()
-                    
                     
                     
                     VStack(spacing: 15) {
@@ -149,13 +159,14 @@ struct EditTaskView: View {
                 .padding()
 
             }
+            
             .navigationTitle("Edit Task")
-//            .background(Color.green.opacity(0.5))
             .alert("WARNING", isPresented: $isShowingAlert) {
                 Button("Delete", role: .destructive) { deleteTask() }
             } message: {
                 Text("Are you sure about deleting this task?")
             }
+            .background(Color.green.opacity(0.3))
         }
     }
     

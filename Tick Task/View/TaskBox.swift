@@ -28,7 +28,7 @@ struct TaskBox: View {
         }
         .padding()
         .background(Color(.systemGray6))
-        .clipShape(.rect(cornerRadius: 20))
+        .clipShape(.rect(cornerRadius: 15))
         .shadow(radius: 5)
         .padding()
     }
