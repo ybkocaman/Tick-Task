@@ -7,22 +7,29 @@
 
 import SwiftUI
 
-struct PreviousTaskListView: View {
+struct PreviousTasksListView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Task.dueDate, ascending: false)]) var tasks: FetchedResults<Task>
 
     var body: some View {
+        
         NavigationStack {
+        
             ScrollView {
+            
                 VStack {
+                
                     ForEach(groupedTasks.keys.sorted(by: >), id: \.self) { date in
-                        TaskBox(tasks: groupedTasks[date] ?? [], date: date)
+                        DayBoxView(tasks: groupedTasks[date] ?? [], date: date)
+                            .padding(.horizontal)
+                            .padding(.vertical, 5)
                     }
                 }
+                
             }
             
             .navigationTitle("Previous Tasks")
-            .background(Color.cyan.opacity(0.3))
+            .background(Color.mint.opacity(0.3))
         }
     }
     

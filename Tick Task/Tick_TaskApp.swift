@@ -13,7 +13,7 @@ struct Tick_TaskApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainScreen()
                 .environment(\.managedObjectContext, dataController.container.viewContext)
         }
     }

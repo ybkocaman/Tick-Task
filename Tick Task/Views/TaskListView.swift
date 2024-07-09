@@ -14,7 +14,9 @@ struct TaskListView: View {
     var body: some View {
         VStack {
             ForEach(groupedTasks.keys.sorted(), id: \.self) { date in
-                TaskBox(tasks: groupedTasks[date] ?? [], date: date)
+                DayBoxView(tasks: groupedTasks[date] ?? [], date: date)
+                    .padding(.horizontal)
+                    .padding(.vertical, 5)
             }
         }
     }

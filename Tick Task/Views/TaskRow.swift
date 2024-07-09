@@ -27,7 +27,10 @@ struct TaskRow: View {
                     HStack {
                         Text(task.name ?? "Task name unavailable")
                             .bold()
-                        Text("8pm")
+                        if task.isDueTime {
+                            Text("• \(formattedTime(dueTime: task.dueTime))")
+                                .foregroundStyle(.secondary)
+                        }
                         Spacer()
                     }
                     Text(task.taskDescription ?? "")
@@ -62,6 +65,21 @@ struct TaskRow: View {
             return .yellow
         default:
             return .blue
+        }
+    }
+    
+    private func formattedTime(dueTime: Date?) -> String {
+        let calendar = Calendar.current
+        let minute = calendar.component(.minute, from: dueTime!)
+        
+        if minute == 0 {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "h a"
+            return formatter.string(from: dueTime!).lowercased()
+        } else {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "h:mm a"
+            return formatter.string(from: dueTime!).lowercased()
         }
     }
     

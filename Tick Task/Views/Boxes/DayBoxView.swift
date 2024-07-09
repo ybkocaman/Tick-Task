@@ -1,5 +1,5 @@
 //
-//  TaskBox.swift
+//  DayBoxView.swift
 //  Tick Task
 //
 //  Created by Yusuf Burak on 07/07/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TaskBox: View {
+struct DayBoxView: View {
     @Environment(\.managedObjectContext) private var moc
     var tasks: [Task]
     var date: Date
@@ -16,8 +16,17 @@ struct TaskBox: View {
         HStack {
             VStack(alignment: .leading, spacing: 15) {
                 HStack {
+                    
                     Text(dateFormatted(date))
+    
+                    Text("•")
+                        .foregroundStyle(.secondary)
+                    
+                    Text(dayFormatted(date))
+                        .foregroundStyle(.secondary)
+                    
                     Spacer()
+                    
                 }
                 ForEach(tasks) { task in
                     TaskRow(task: task)
@@ -30,7 +39,6 @@ struct TaskBox: View {
         .background(Color(.systemGray6))
         .clipShape(.rect(cornerRadius: 15))
         .shadow(radius: 5)
-        .padding()
     }
     
     private func dateFormatted(_ date: Date) -> String {
@@ -40,22 +48,25 @@ struct TaskBox: View {
         let formatter = DateFormatter()
 
         if calendar.isDate(date, inSameDayAs: today) {
-            formatter.dateFormat = "EEEE"
-            let day = formatter.string(from: date)
-            return "Today • \(day)"
+            return "Today"
         } else if calendar.isDate(date, inSameDayAs: tomorrow) {
-            formatter.dateFormat = "EEEE"
-            let day = formatter.string(from: date)
-            return "Tomorrow • \(day)"
+            return "Tomorrow"
         } else {
-            formatter.dateFormat = "d MMMM, EEEE"
+            formatter.dateFormat = "d MMM"
             return formatter.string(from: date)
         }
+    }
+    
+    private func dayFormatted(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE"
+        return formatter.string(from: date)
+
     }
 }
 
 #Preview {
-    TaskBox(tasks: [Task(context: PersistenceController.preview.container.viewContext)], date: Date())
+    DayBoxView(tasks: [Task(context: PersistenceController.preview.container.viewContext)], date: Date())
         .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         .previewLayout(.sizeThatFits)
 }
