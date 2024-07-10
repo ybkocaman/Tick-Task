@@ -17,7 +17,17 @@ struct EditTaskView: View {
     @State private var taskDescription: String
     @State private var dueDate: Date
     @State private var priority: Int16
-    @State private var isDueTime: Bool
+    @State private var isDueTime: Bool {
+        didSet {
+            if isDueTime {
+                if dueTime == nil {
+                    dueTime = Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: dueDate)
+                }
+            } else {
+                dueTime = nil
+            }
+        }
+    }
     @State private var dueTime: Date?
     
     @State private var isShowingAlert = false
@@ -60,11 +70,13 @@ struct EditTaskView: View {
                             
                         }
                         
+                        
                         Button {
                             isShowingAlert.toggle()
                         } label: {
                             AppButton(title: "Delete Task", systemName: "trash", isFilledBackground: false, fontColor: .red, buttonColor: .red)
                         }
+                        
                         
                         Button {
                             saveTask()
@@ -80,7 +92,7 @@ struct EditTaskView: View {
             .alert("WARNING", isPresented: $isShowingAlert) {
                 Button("Delete", role: .destructive) { deleteTask() }
             } message: {
-                Text("Are you sure about deleting this task?")
+                Text("Are you sure you want to delete this task?")
             }
             .background(Color.mint.opacity(0.3))
         }
@@ -92,7 +104,11 @@ struct EditTaskView: View {
         task.dueDate = dueDate
         task.priority = priority
         task.isDueTime = isDueTime
-        task.dueTime = dueTime
+        if isDueTime {
+            task.dueTime = dueTime
+        } else {
+            task.dueTime = nil
+        }
         try? moc.save()
         dismiss()
     }

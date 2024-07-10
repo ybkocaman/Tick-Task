@@ -18,7 +18,9 @@ struct AppButton: View {
     var body: some View {
         if isFilledBackground {
             HStack {
-                Image(systemName: systemName ?? "")
+                if systemName != nil {
+                    Image(systemName: systemName!)
+                }
                 Text(title)
             }
                 .bold()

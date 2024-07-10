@@ -17,7 +17,7 @@ struct AddTaskView: View {
     @State private var dueDate = Date()
     @State private var priority: Int16 = 2
     @State private var isDueTime = false
-    @State private var dueTime: Date? = Date()
+    @State private var dueTime: Date? = nil
     
     var body: some View {
         NavigationStack {
@@ -46,11 +46,16 @@ struct AddTaskView: View {
     func addTask() {
         let newTask = Task(context: moc)
         newTask.id = UUID()
-        newTask.name = name
+        if name != "" {
+            newTask.name = name
+        } else {
+            newTask.name = "New Task"
+        }
         newTask.taskDescription = taskDescription
         newTask.dueDate = dueDate
         newTask.priority = Int16(priority)
         newTask.isDueTime = isDueTime
+        newTask.dueTime = dueTime
         try? moc.save()
         dismiss()
     }

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4678BBF22C3B38ED003D8259 /* DayBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4678BBF12C3B38ED003D8259 /* DayBoxView.swift */; };
 		4678BBF42C3B3DB6003D8259 /* MockTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4678BBF32C3B3DB6003D8259 /* MockTask.swift */; };
-		4678BBF62C3D3D39003D8259 /* TimeBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4678BBF52C3D3D39003D8259 /* TimeBoxView.swift */; };
 		4678BBF82C3D3F39003D8259 /* TaskNameAndDescriptionBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4678BBF72C3D3F39003D8259 /* TaskNameAndDescriptionBoxView.swift */; };
 		4678BBFA2C3D4668003D8259 /* PriorityBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4678BBF92C3D4668003D8259 /* PriorityBoxView.swift */; };
 		4678BBFC2C3D4772003D8259 /* TaskDateAndTimeBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4678BBFB2C3D4772003D8259 /* TaskDateAndTimeBoxView.swift */; };
@@ -30,7 +29,6 @@
 /* Begin PBXFileReference section */
 		4678BBF12C3B38ED003D8259 /* DayBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayBoxView.swift; sourceTree = "<group>"; };
 		4678BBF32C3B3DB6003D8259 /* MockTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTask.swift; sourceTree = "<group>"; };
-		4678BBF52C3D3D39003D8259 /* TimeBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBoxView.swift; sourceTree = "<group>"; };
 		4678BBF72C3D3F39003D8259 /* TaskNameAndDescriptionBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskNameAndDescriptionBoxView.swift; sourceTree = "<group>"; };
 		4678BBF92C3D4668003D8259 /* PriorityBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityBoxView.swift; sourceTree = "<group>"; };
 		4678BBFB2C3D4772003D8259 /* TaskDateAndTimeBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDateAndTimeBoxView.swift; sourceTree = "<group>"; };
@@ -83,7 +81,6 @@
 			isa = PBXGroup;
 			children = (
 				4678BBF12C3B38ED003D8259 /* DayBoxView.swift */,
-				4678BBF52C3D3D39003D8259 /* TimeBoxView.swift */,
 				4678BBF72C3D3F39003D8259 /* TaskNameAndDescriptionBoxView.swift */,
 				4678BBFB2C3D4772003D8259 /* TaskDateAndTimeBoxView.swift */,
 				4678BBF92C3D4668003D8259 /* PriorityBoxView.swift */,
@@ -233,7 +230,6 @@
 				4678BBF82C3D3F39003D8259 /* TaskNameAndDescriptionBoxView.swift in Sources */,
 				4678BBF22C3B38ED003D8259 /* DayBoxView.swift in Sources */,
 				46FAD7782C341ACD009704CD /* TaskListView.swift in Sources */,
-				4678BBF62C3D3D39003D8259 /* TimeBoxView.swift in Sources */,
 				468714C02C3DA513003DCD57 /* AppButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

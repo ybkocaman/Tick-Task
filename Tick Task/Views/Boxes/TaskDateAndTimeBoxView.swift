@@ -16,18 +16,31 @@ struct TaskDateAndTimeBoxView: View {
     var body: some View {
         
         VStack {
+            
             DatePicker("Due Date", selection: $dueDate, displayedComponents: .date)
                 .background(Color.gray.opacity(0))
                 .padding(.top, 5)
+            
             Divider()
                 .padding(.vertical, 5)
+            
             Toggle("Has Due Time", isOn: $isDueTime)
                 .padding(.bottom, 5)
+                .onChange(of: isDueTime) {
+                    if isDueTime {
+                        dueTime = Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: dueDate)
+                        print("due time changed to 8 am with onchange")
+                    } else {
+                        dueTime = nil
+                        print("due time changed to nil with onchange")
+                    }
+                }
+            
             if isDueTime {
                 Divider()
                 
                 DatePicker("Due Time", selection: Binding(
-                    get: { dueTime ?? Date() },
+                    get: { dueTime ?? Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: dueDate)! },
                     set: { dueTime = $0 }
                 ), displayedComponents: .hourAndMinute)
                 .onAppear {
@@ -36,6 +49,7 @@ struct TaskDateAndTimeBoxView: View {
                 .padding(.vertical, 5)
             }
         }
+        
         .padding(.horizontal)
         .padding(.vertical, 10)
         .background(Color(.systemGray6))

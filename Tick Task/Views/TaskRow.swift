@@ -70,16 +70,16 @@ struct TaskRow: View {
     
     private func formattedTime(dueTime: Date?) -> String {
         let calendar = Calendar.current
-        let minute = calendar.component(.minute, from: dueTime!)
+        let minute = calendar.component(.minute, from: dueTime ?? Date())
         
         if minute == 0 {
             let formatter = DateFormatter()
             formatter.dateFormat = "h a"
-            return formatter.string(from: dueTime!).lowercased()
+            return formatter.string(from: dueTime ?? Date()).lowercased()
         } else {
             let formatter = DateFormatter()
             formatter.dateFormat = "h:mm a"
-            return formatter.string(from: dueTime!).lowercased()
+            return formatter.string(from: dueTime ?? Date()).lowercased()
         }
     }
     
