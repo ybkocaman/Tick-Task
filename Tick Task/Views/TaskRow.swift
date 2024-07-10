@@ -33,13 +33,16 @@ struct TaskRow: View {
                         }
                         Spacer()
                     }
-                    Text(task.taskDescription ?? "")
-                        .foregroundStyle(.secondary)
+                    if let description = task.taskDescription?.trimmingCharacters(in: .whitespacesAndNewlines), !description.isEmpty {
+                        Text(description)
+                            .foregroundStyle(.secondary)
+                    }
                 }
                 .foregroundStyle(.black)
                 .strikethrough(task.isCompleted)
+                
                 Image(systemName: "square.fill")
-                    .foregroundStyle(priorityColor.opacity(0.7))
+                    .foregroundStyle(priorityColor.opacity(0.5))
                     .font(.title3)
                 
                 
@@ -69,22 +72,15 @@ struct TaskRow: View {
     }
     
     private func formattedTime(dueTime: Date?) -> String {
-        let calendar = Calendar.current
-        let minute = calendar.component(.minute, from: dueTime ?? Date())
-        
-        if minute == 0 {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "h a"
-            return formatter.string(from: dueTime ?? Date()).lowercased()
-        } else {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "h:mm a"
-            return formatter.string(from: dueTime ?? Date()).lowercased()
-        }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        return formatter.string(from: dueTime ?? Date())
     }
     
     func toggleTaskCompletion(_ task: Task) {
-        task.isCompleted.toggle()
-        try? moc.save()
+        withAnimation(.smooth(duration: 0.2)) {
+            task.isCompleted.toggle()
+            try? moc.save()
+        }
     }
 }

@@ -29,10 +29,8 @@ struct TaskDateAndTimeBoxView: View {
                 .onChange(of: isDueTime) {
                     if isDueTime {
                         dueTime = Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: dueDate)
-                        print("due time changed to 8 am with onchange")
                     } else {
                         dueTime = nil
-                        print("due time changed to nil with onchange")
                     }
                 }
             

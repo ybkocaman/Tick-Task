@@ -19,12 +19,20 @@ struct AddTaskView: View {
     @State private var isDueTime = false
     @State private var dueTime: Date? = nil
     
+    @FocusState private var focusedField: Field?
+    
+    enum Field {
+        case name, description
+    }
+    
+    
     var body: some View {
         NavigationStack {
             
             ScrollView {
                 TaskNameAndDescriptionBoxView(name: $name, taskDescription: $taskDescription)
                     .padding()
+
                 PriorityBoxView(priority: $priority)
                     .padding(.horizontal)
                 TaskDateAndTimeBoxView(dueDate: $dueDate, isDueTime: $isDueTime, dueTime: $dueTime)
@@ -36,11 +44,15 @@ struct AddTaskView: View {
                     AppButton(title: "Add Task", isFilledBackground: true, fontColor: .white, buttonColor: .blue)
                 }
                 .padding()
+                
             }
-            
-            .navigationTitle("Add a task")
+//            .onTapGesture {
+//                focusedField = nil
+//            }
+            .navigationTitle("Add new task")
             .background(Color.mint.opacity(0.3))
         }
+
     }
     
     func addTask() {
@@ -61,6 +73,12 @@ struct AddTaskView: View {
     }
     
 
+}
+
+extension View {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
 }
 
 #Preview {

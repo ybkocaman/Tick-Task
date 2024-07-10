@@ -81,9 +81,9 @@
 			isa = PBXGroup;
 			children = (
 				4678BBF12C3B38ED003D8259 /* DayBoxView.swift */,
-				4678BBF72C3D3F39003D8259 /* TaskNameAndDescriptionBoxView.swift */,
-				4678BBFB2C3D4772003D8259 /* TaskDateAndTimeBoxView.swift */,
 				4678BBF92C3D4668003D8259 /* PriorityBoxView.swift */,
+				4678BBFB2C3D4772003D8259 /* TaskDateAndTimeBoxView.swift */,
+				4678BBF72C3D3F39003D8259 /* TaskNameAndDescriptionBoxView.swift */,
 			);
 			path = Boxes;
 			sourceTree = "<group>";

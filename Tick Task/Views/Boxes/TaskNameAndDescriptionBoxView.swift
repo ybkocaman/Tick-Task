@@ -11,23 +11,35 @@ struct TaskNameAndDescriptionBoxView: View {
     
     @Binding var name: String
     @Binding var taskDescription: String
-    
+    @FocusState var focusedField: AddTaskView.Field?
+
     var body: some View {
         VStack(alignment: .leading) {
+            
             Text("Task Name")
                 .bold()
             TextField("Enter Task Name Here...", text: $name)
                 .padding(10)
                 .background(Color.white)
                 .clipShape(.rect(cornerRadius: 10))
+                .focused($focusedField, equals: .name)
+                .submitLabel(.next)
+                .onSubmit {
+                    focusedField = .description
+                }
+            
             Divider()
                 .padding(.vertical, 10)
+            
             Text("Task Description")
                 .bold()
             TextField("Enter Task Description Here...", text: $taskDescription)
                 .padding(10)
                 .background(Color.white)
                 .clipShape(.rect(cornerRadius: 10))
+                .focused($focusedField, equals: .description)
+                .submitLabel(.done)
+            
         }
         .padding()
         .background(Color(.systemGray6))
@@ -36,6 +48,11 @@ struct TaskNameAndDescriptionBoxView: View {
                 .stroke(Color.black, lineWidth: 3)
         )
         .clipShape(.rect(cornerRadius: 15))
+        .onAppear {
+            DispatchQueue.main.async {
+                focusedField = .name
+            }
+        }
     }
 }
 

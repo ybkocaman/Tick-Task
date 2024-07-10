@@ -13,10 +13,10 @@ struct PriorityBoxView: View {
     
     var body: some View {
         
-        HStack {
+        VStack(alignment: .leading) {
             Text("Priority")
                 .bold()
-                .foregroundStyle(.white)
+//                .foregroundStyle(.white)
             Spacer()
             Picker("Priority", selection: $priority) {
                 Text("High")
@@ -29,10 +29,12 @@ struct PriorityBoxView: View {
                     .tag(Int16(3))
             }
             .tint(.white)
+            .pickerStyle(.segmented)
         }
         .padding(.horizontal)
         .padding(.vertical, 11)
-        .background(getPriorityColor(priority: priority))
+        .background(getPriorityColor(priority: priority).opacity(0.5))
+        .background(Color.white)
         .overlay(
             RoundedRectangle(cornerSize: CGSize(width: 15, height: 15))
                 .stroke(Color.black, lineWidth: 3)

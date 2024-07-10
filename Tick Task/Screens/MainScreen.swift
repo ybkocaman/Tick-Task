@@ -13,9 +13,11 @@ struct MainScreen: View {
         
         NavigationStack {
             ZStack {
+                
                 ScrollView {
                     TaskListView()
                 }
+                
                 VStack {
                     Spacer()
                     HStack {

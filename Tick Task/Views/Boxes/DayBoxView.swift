@@ -48,21 +48,23 @@ struct DayBoxView: View {
                     
                     Spacer()
                     
-                    Button {
-                        withAnimation {
-                            toggleFoldedState()
-                        }
-                    } label: {
-                        Image(systemName: isFolded ? "chevron.down" : "chevron.up")
-                            .foregroundStyle(.gray)
-                            .padding(.trailing, 5)
-                    }
+                    Image(systemName: isFolded ? "chevron.down" : "chevron.up")
+                        .foregroundStyle(.gray)
+                        .padding(.trailing, 5)
                     
                 }
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    withAnimation(.bouncy(duration: 0.8)) {
+                        toggleFoldedState()
+                    }
+                }
+                
                 if !isFolded {
-                    ForEach(tasks) { task in
+                    ForEach(sortedTasks) { task in
                         TaskRow(task: task)
                     }
+                    .animation(.easeInOut(duration: 0.5), value: sortedTasks)
                 }
             }
             Spacer()
@@ -72,6 +74,21 @@ struct DayBoxView: View {
         .background(Color(.systemGray6))
         .clipShape(.rect(cornerRadius: 15))
         .shadow(radius: 5)
+    }
+    
+    
+    private var sortedTasks: [Task] {
+        tasks.sorted {
+            if $0.isCompleted == $1.isCompleted {
+                if $0.priority == $1.priority {
+                    return ($0.dueTime ?? Date.distantFuture) < ($1.dueTime ?? Date.distantFuture)
+                } else {
+                    return $0.priority < $1.priority
+                }
+            } else {
+                return !$0.isCompleted && $1.isCompleted
+            }
+        }
     }
     
     private var isFolded: Bool {
