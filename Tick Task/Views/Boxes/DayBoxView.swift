@@ -28,48 +28,44 @@ struct DayBoxView: View {
     }
     
     var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 15) {
-                HStack {
-                    
-                    Text(dateFormatted(date))
-    
-                    Text("•")
-                        .foregroundStyle(.secondary)
-                    
-                    Text(dayFormatted(date))
-                        .foregroundStyle(.secondary)
-                    
-                    if isFolded {
-                        Image(systemName: "\(tasks.count).circle")
-                            .font(.title3)
-                            .padding(.leading, 10)
-                    }
-                    
-                    Spacer()
-                    
-                    Image(systemName: isFolded ? "chevron.down" : "chevron.up")
-                        .foregroundStyle(.gray)
-                        .padding(.trailing, 5)
-                    
-                }
-                .contentShape(Rectangle())
-                .onTapGesture {
-                    withAnimation(.bouncy(duration: 0.8)) {
-                        toggleFoldedState()
-                    }
+
+        VStack(alignment: .leading, spacing: 15) {
+            HStack {
+                
+                Text(dateFormatted(date))
+                Text("•")
+                    .foregroundStyle(.secondary)
+                Text(dayFormatted(date))
+                    .foregroundStyle(.secondary)
+                
+                if isFolded {
+                    Image(systemName: "\(tasks.count).circle")
+                        .font(.title3)
+                        .padding(.leading, 10)
                 }
                 
-                if !isFolded {
-                    ForEach(sortedTasks) { task in
-                        TaskRow(task: task)
-                    }
-                    .animation(.easeInOut(duration: 0.5), value: sortedTasks)
+                Spacer()
+                
+                Image(systemName: isFolded ? "chevron.down" : "chevron.up")
+                    .foregroundStyle(.gray)
+                    .padding(.trailing, 5)
+                
+            }
+            .contentShape(Rectangle())
+            .onTapGesture {
+                withAnimation(.bouncy(duration: 0.8)) {
+                    toggleFoldedState()
                 }
             }
-            Spacer()
-
+            
+            if !isFolded {
+                ForEach(sortedTasks) { task in
+                    TaskRow(task: task)
+                }
+                .animation(.easeInOut(duration: 0.5), value: sortedTasks)
+            }
         }
+
         .padding()
         .background(Color(.systemGray6))
         .clipShape(.rect(cornerRadius: 15))
@@ -144,7 +140,7 @@ struct DayBoxView: View {
 }
 
 #Preview {
-    DayBoxView(tasks: [Task(context: PersistenceController.preview.container.viewContext)], date: Date())
-        .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    DayBoxView(tasks: [Task(context: PersistenceManager.preview.container.viewContext)], date: Date())
+        .environment(\.managedObjectContext, PersistenceManager.preview.container.viewContext)
         .previewLayout(.sizeThatFits)
 }

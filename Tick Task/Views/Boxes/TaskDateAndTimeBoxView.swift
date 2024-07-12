@@ -36,7 +36,7 @@ struct TaskDateAndTimeBoxView: View {
             
             if isDueTime {
                 Divider()
-                
+
                 DatePicker("Due Time", selection: Binding(
                     get: { dueTime ?? Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: dueDate)! },
                     set: { dueTime = $0 }
@@ -45,9 +45,10 @@ struct TaskDateAndTimeBoxView: View {
                     UIDatePicker.appearance().minuteInterval = 15
                 }
                 .padding(.vertical, 5)
+
             }
+            
         }
-        
         .padding(.horizontal)
         .padding(.vertical, 10)
         .background(Color(.systemGray6))
@@ -56,7 +57,8 @@ struct TaskDateAndTimeBoxView: View {
                 .stroke(Color.black, lineWidth: 3)
         )
         .clipShape(.rect(cornerRadius: 15))
-        
+//        .animation(.easeInOut, value: isDueTime)
+
     }
 }
 

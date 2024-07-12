@@ -1,5 +1,5 @@
 //
-//  PersistenceController.swift
+//  PersistenceManager.swift
 //  Tick Task
 //
 //  Created by Yusuf Burak on 30/06/2024.
@@ -8,8 +8,8 @@
 import CoreData
 import Foundation
 
-class PersistenceController: ObservableObject {
-    static let shared = PersistenceController()
+class PersistenceManager: ObservableObject {
+    static let shared = PersistenceManager()
 
     let container = NSPersistentContainer(name: "TickTask")
 
@@ -26,8 +26,8 @@ class PersistenceController: ObservableObject {
         }
     }
     
-    static var preview: PersistenceController = {
-        let controller = PersistenceController(inMemory: true)
+    static var preview: PersistenceManager = {
+        let controller = PersistenceManager(inMemory: true)
         let viewContext = controller.container.viewContext
 
         // Create sample data for preview

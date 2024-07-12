@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct MainScreen: View {
-        
+
+    @StateObject private var feedbackManager = FeedbackManager()
+
     var body: some View {
-        
+                
         NavigationStack {
+            
             ZStack {
                 
-                ScrollView {
-                    TaskListView()
-                }
-                
+                TaskListView()
+
                 VStack {
                     Spacer()
                     HStack {
@@ -29,21 +30,19 @@ struct MainScreen: View {
                                 .font(.largeTitle.bold())
                                 .foregroundStyle(.black)
                                 .padding()
-                                .background(Color.brown.opacity(0.8))
-                                .background(Color.white)
+                                .background(Color.brown)
                                 .clipShape(Circle())
                                 .overlay {
                                     Circle()
                                         .stroke(.black, lineWidth: 3)
                                 }
-                                .padding(.bottom, 50)
-                                .padding(.trailing, 30)
+                                .padding(30)
                         }
                     }
                 }
-                .ignoresSafeArea()
+//                .ignoresSafeArea()
             }
-            .padding(.top)
+            
             .background(Color.mint.opacity(0.3))
             .navigationTitle("Tick Task")
             .toolbar {
@@ -62,8 +61,14 @@ struct MainScreen: View {
                         .foregroundStyle(.black)
                 }
             }
+            .overlay(
+                feedbackManager.feedbackMessage != nil ? FeedbackView(feedbackMessage: feedbackManager.feedbackMessage!).padding(.bottom, 100) : nil,
+                alignment: .bottom
+            )
+            .animation(.easeInOut, value: feedbackManager.feedbackMessage)
         }
-
+        
+        .environmentObject(feedbackManager)
     }
 }
 

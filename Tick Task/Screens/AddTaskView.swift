@@ -12,6 +12,8 @@ struct AddTaskView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) var tasks: FetchedResults<Task>
     
+    @EnvironmentObject var feedbackManager: FeedbackManager
+        
     @State private var name = ""
     @State private var taskDescription = ""
     @State private var dueDate = Date()
@@ -78,6 +80,7 @@ struct AddTaskView: View {
         newTask.isDueTime = isDueTime
         newTask.dueTime = dueTime
         try? moc.save()
+        feedbackManager.showFeedback(message: "Task added")
         dismiss()
     }
     
@@ -90,6 +93,6 @@ extension View {
     }
 }
 
-#Preview {
-    AddTaskView()
-}
+//#Preview {
+//    AddTaskView()
+//}

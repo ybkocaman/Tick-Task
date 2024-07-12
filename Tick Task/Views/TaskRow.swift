@@ -18,29 +18,38 @@ struct TaskRow: View {
         } label: {
             
             HStack {
-                let priorityColor = getPriorityColor(priority: task.priority)
+
                 Image(systemName: task.isCompleted ? "checkmark.square" : "square")
                     .foregroundStyle(.gray)
                     .font(.title)
                     .onTapGesture { toggleTaskCompletion(task) }
+                
                 VStack(alignment: .leading) {
                     HStack {
                         Text(task.name ?? "Task name unavailable")
                             .bold()
+                            .lineLimit(1)
+                            .strikethrough(task.isCompleted)
+
                         if task.isDueTime {
                             Text("• \(formattedTime(dueTime: task.dueTime))")
                                 .foregroundStyle(.secondary)
                         }
-                        Spacer()
                     }
+                    
                     if let description = task.taskDescription?.trimmingCharacters(in: .whitespacesAndNewlines), !description.isEmpty {
                         Text(description)
                             .foregroundStyle(.secondary)
+                            .lineLimit(3)
+                            .strikethrough(task.isCompleted)
                     }
                 }
+                .multilineTextAlignment(.leading)
                 .foregroundStyle(.black)
-                .strikethrough(task.isCompleted)
+
+                Spacer()
                 
+                let priorityColor = getPriorityColor(priority: task.priority)
                 Image(systemName: "square.fill")
                     .foregroundStyle(priorityColor.opacity(0.5))
                     .font(.title3)

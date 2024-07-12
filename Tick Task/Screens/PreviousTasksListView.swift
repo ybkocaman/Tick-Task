@@ -10,31 +10,44 @@ import SwiftUI
 struct PreviousTasksListView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Task.dueDate, ascending: false)]) var tasks: FetchedResults<Task>
+    
+    @State private var searchText = ""
 
     var body: some View {
         
         NavigationStack {
-        
-            ScrollView {
             
-                VStack {
+            if groupedTasks.keys.sorted(by: >).isEmpty {
+                EmptyStateView(imageSystemName: "calendar.badge.clock", header: "No Previous Tasks")
+            } else {
                 
+                ScrollView {
+                    
                     ForEach(groupedTasks.keys.sorted(by: >), id: \.self) { date in
                         DayBoxView(tasks: groupedTasks[date] ?? [], date: date)
                             .padding(.horizontal)
                             .padding(.vertical, 5)
                     }
+                    .searchable(text: $searchText, prompt: "Search task")
+
                 }
                 
             }
             
-            .navigationTitle("Previous Tasks")
-            .background(Color.mint.opacity(0.3))
+
         }
+        .navigationTitle("Previous Tasks")
+        .background(Color.mint.opacity(0.3))
     }
     
     private var groupedTasks: [Date: [Task]] {
-        let tasksToShow = tasks.filter { task in
+        let filteredTasks = tasks.filter { task in
+            searchText.isEmpty ||
+            task.name?.localizedCaseInsensitiveContains(searchText) ?? false ||
+            task.taskDescription?.localizedCaseInsensitiveContains(searchText) ?? false
+        }
+        
+        let tasksToShow = filteredTasks.filter { task in
             return task.dueDate! < Calendar.current.startOfDay(for: Date())
         }
         

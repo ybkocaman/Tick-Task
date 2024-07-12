@@ -19,7 +19,7 @@ struct TaskNameAndDescriptionBoxView: View {
             Text("Task Name")
                 .bold()
             TextField("Enter Task Name Here...", text: $name)
-                .padding(10)
+                .padding(8)
                 .background(Color.white)
                 .clipShape(.rect(cornerRadius: 10))
                 .focused($focusedField, equals: .name)
@@ -34,12 +34,12 @@ struct TaskNameAndDescriptionBoxView: View {
             Text("Task Description")
                 .bold()
             TextField("Enter Task Description Here...", text: $taskDescription)
-                .padding(10)
+                .padding(8)
                 .background(Color.white)
                 .clipShape(.rect(cornerRadius: 10))
                 .focused($focusedField, equals: .description)
                 .submitLabel(.done)
-            
+
         }
         .padding()
         .background(Color(.systemGray6))

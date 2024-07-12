@@ -13,6 +13,8 @@ struct EditTaskView: View {
     @Environment(\.managedObjectContext) var moc
     @ObservedObject var task: Task
     
+    @EnvironmentObject var feedbackManager: FeedbackManager
+    
     @State private var name: String
     @State private var taskDescription: String
     @State private var dueDate: Date
@@ -69,15 +71,15 @@ struct EditTaskView: View {
                         }
                         
                         Button {
-                            isShowingAlert.toggle()
-                        } label: {
-                            AppButton(title: "Delete Task", systemName: "trash", isFilledBackground: false, fontColor: .red, buttonColor: .red)
-                        }
-                        
-                        Button {
                             saveTask()
                         } label: {
                             AppButton(title: "Save", isFilledBackground: true, fontColor: .white, buttonColor: .blue)
+                        }
+                        
+                        Button {
+                            isShowingAlert.toggle()
+                        } label: {
+                            AppButton(title: "Delete Task", systemName: "trash", isFilledBackground: false, fontColor: .red, buttonColor: .red)
                         }
                         
                         Button {
@@ -90,7 +92,8 @@ struct EditTaskView: View {
                     .padding()
 
             }
-            
+            .animation(.easeInOut, value: isDueTime)
+
             .navigationTitle("Edit Task")
             .navigationBarBackButtonHidden()
             .alert("WARNING", isPresented: $isShowingAlert) {
@@ -114,12 +117,14 @@ struct EditTaskView: View {
             task.dueTime = nil
         }
         try? moc.save()
+        feedbackManager.showFeedback(message: "Task saved")
         dismiss()
     }
     
     private func deleteTask() {
         moc.delete(task)
         try? moc.save()
+        feedbackManager.showFeedback(message: "Task deleted")
         dismiss()
     }
     
@@ -127,7 +132,7 @@ struct EditTaskView: View {
 
 
 #Preview {
-    let context = PersistenceController.preview.container.viewContext
+    let context = PersistenceManager.preview.container.viewContext
     let task = Task(context: context)
     task.id = UUID()
     task.name = "Sample Task"
