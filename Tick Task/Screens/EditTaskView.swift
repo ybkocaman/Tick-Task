@@ -61,15 +61,12 @@ struct EditTaskView: View {
                         Button {
                             task.isCompleted.toggle()
                         } label: {
-                            
                             if task.isCompleted {
                                 AppButton(title: "Mark Uncompleted", systemName: "square", isFilledBackground: true, fontColor: .white, buttonColor: .black)
                             } else {
                                 AppButton(title: "Mark Completed", systemName: "checkmark.square", isFilledBackground: true, fontColor: .white, buttonColor: .green)
                             }
-                            
                         }
-                        
                         
                         Button {
                             isShowingAlert.toggle()
@@ -77,18 +74,25 @@ struct EditTaskView: View {
                             AppButton(title: "Delete Task", systemName: "trash", isFilledBackground: false, fontColor: .red, buttonColor: .red)
                         }
                         
-                        
                         Button {
                             saveTask()
                         } label: {
                             AppButton(title: "Save", isFilledBackground: true, fontColor: .white, buttonColor: .blue)
                         }
+                        
+                        Button {
+                            dismiss()
+                        } label: {
+                            AppButton(title: "Cancel", isFilledBackground: false, fontColor: .black, buttonColor: .black)
+                        }
+                        
                     }
                     .padding()
 
             }
             
             .navigationTitle("Edit Task")
+            .navigationBarBackButtonHidden()
             .alert("WARNING", isPresented: $isShowingAlert) {
                 Button("Delete", role: .destructive) { deleteTask() }
             } message: {

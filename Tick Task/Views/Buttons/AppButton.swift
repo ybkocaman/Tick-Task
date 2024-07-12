@@ -23,28 +23,31 @@ struct AppButton: View {
                 }
                 Text(title)
             }
-                .bold()
-                .frame(maxWidth: .infinity)
-                .foregroundStyle(fontColor)
-                .padding(9)
-                .background(buttonColor)
-                .clipShape(Capsule())
+            .bold()
+            .frame(maxWidth: .infinity)
+            .foregroundStyle(fontColor)
+            .padding(9)
+            .background(buttonColor)
+            .clipShape(Capsule())
         } else {
             HStack {
-                Image(systemName: systemName ?? "")
+                if systemName != nil {
+                    Image(systemName: systemName!)
+                }
                 Text(title)
             }
+            .bold()
             .frame(maxWidth: .infinity)
             .foregroundStyle(fontColor)
             .padding(9)
             .overlay(
                 Capsule()
-                    .stroke(Color.red, lineWidth: 3)
+                    .stroke(buttonColor, lineWidth: 3)
             )
             .clipShape(Capsule())
-
+            
         }
-
+        
     }
     
 }

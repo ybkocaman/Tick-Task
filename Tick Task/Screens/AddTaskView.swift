@@ -38,18 +38,27 @@ struct AddTaskView: View {
                 TaskDateAndTimeBoxView(dueDate: $dueDate, isDueTime: $isDueTime, dueTime: $dueTime)
                     .padding()
                 
-                Button {
-                    addTask()
-                } label: {
-                    AppButton(title: "Add Task", isFilledBackground: true, fontColor: .white, buttonColor: .blue)
+                VStack(spacing: 15) {
+                    Button {
+                        addTask()
+                    } label: {
+                        AppButton(title: "Add Task", isFilledBackground: true, fontColor: .white, buttonColor: .blue)
+                    }
+                    
+                    Button {
+                        dismiss()
+                    } label: {
+                        AppButton(title: "Cancel", isFilledBackground: false, fontColor: .black, buttonColor: .black)
+                    }
                 }
                 .padding()
-                
+
             }
 //            .onTapGesture {
 //                focusedField = nil
 //            }
-            .navigationTitle("Add new task")
+            .navigationTitle("Add a new task")
+            .navigationBarBackButtonHidden()
             .background(Color.mint.opacity(0.3))
         }
 
