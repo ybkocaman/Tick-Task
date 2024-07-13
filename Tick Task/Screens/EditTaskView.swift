@@ -120,18 +120,29 @@ struct EditTaskView: View {
     }
     
     private func saveTask() {
+        if let existingDueTime = task.dueTime {
+            NotificationManager.shared.removeNotification(for: task)
+        }
+        
         task.name = name
         task.taskDescription = taskDescription
         task.dueDate = dueDate
         task.priority = priority
         task.isDueTime = isDueTime
+
         if isDueTime {
             task.dueTime = dueTime
         } else {
             task.dueTime = nil
         }
+
         try? moc.save()
         feedbackManager.showFeedback(message: "Task saved")
+        
+        if task.isDueTime {
+            NotificationManager.shared.scheduleNotification(for: task)
+        }
+        
         dismiss()
     }
     
@@ -139,6 +150,7 @@ struct EditTaskView: View {
         moc.delete(task)
         try? moc.save()
         feedbackManager.showFeedback(message: "Task deleted")
+        NotificationManager.shared.removeNotification(for: task)
         dismiss()
     }
     

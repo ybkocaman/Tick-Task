@@ -84,6 +84,7 @@ struct AddTaskView: View {
         } else {
             newTask.name = "New Task"
         }
+        newTask.isCompleted = false
         newTask.taskDescription = taskDescription
         newTask.dueDate = dueDate
         newTask.priority = Int16(priority)
@@ -91,6 +92,9 @@ struct AddTaskView: View {
         newTask.dueTime = dueTime
         try? moc.save()
         feedbackManager.showFeedback(message: "Task added")
+        if newTask.isDueTime {
+            NotificationManager.shared.scheduleNotification(for: newTask)
+        }
         dismiss()
     }
     

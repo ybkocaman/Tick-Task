@@ -15,6 +15,23 @@ struct Tick_TaskApp: App {
         WindowGroup {
             MainScreen()
                 .environment(\.managedObjectContext, dataController.container.viewContext)
+                .onAppear {
+                    scheduleNotifications()
+                    addObservers()
+                }
         }
     }
+    
+    private func scheduleNotifications() {
+        let moc = dataController.container.viewContext
+        NotificationManager.shared.scheduleDailySummaryNotification(moc: moc)
+        NotificationManager.shared.scheduleEveningSummaryNotification(moc: moc)
+    }
+    
+    private func addObservers() {
+        NotificationCenter.default.addObserver(forName: .NSManagedObjectContextDidSave, object: dataController.container.viewContext, queue: .main) { _ in
+            scheduleNotifications()
+        }
+    }
+    
 }

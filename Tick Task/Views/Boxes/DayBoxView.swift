@@ -53,7 +53,7 @@ struct DayBoxView: View {
             }
             .contentShape(Rectangle())
             .onTapGesture {
-                withAnimation(.bouncy(duration: 0.8)) {
+                withAnimation(.bouncy(duration: 0.7)) {
                     toggleFoldedState()
                 }
             }

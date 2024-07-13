@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		46773A212C429A5F0015A7AB /* AddTaskButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46773A202C429A5F0015A7AB /* AddTaskButton.swift */; };
 		46773A232C429EDB0015A7AB /* ToolbarBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46773A222C429EDB0015A7AB /* ToolbarBackButton.swift */; };
+		46773A252C42C9F70015A7AB /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46773A242C42C9F60015A7AB /* NotificationManager.swift */; };
 		4678BBF22C3B38ED003D8259 /* DayBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4678BBF12C3B38ED003D8259 /* DayBoxView.swift */; };
 		4678BBF42C3B3DB6003D8259 /* MockTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4678BBF32C3B3DB6003D8259 /* MockTask.swift */; };
 		4678BBF82C3D3F39003D8259 /* TaskNameAndDescriptionBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4678BBF72C3D3F39003D8259 /* TaskNameAndDescriptionBoxView.swift */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		46773A202C429A5F0015A7AB /* AddTaskButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskButton.swift; sourceTree = "<group>"; };
 		46773A222C429EDB0015A7AB /* ToolbarBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarBackButton.swift; sourceTree = "<group>"; };
+		46773A242C42C9F60015A7AB /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		4678BBF12C3B38ED003D8259 /* DayBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayBoxView.swift; sourceTree = "<group>"; };
 		4678BBF32C3B3DB6003D8259 /* MockTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTask.swift; sourceTree = "<group>"; };
 		4678BBF72C3D3F39003D8259 /* TaskNameAndDescriptionBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskNameAndDescriptionBoxView.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 		46E76E392C41400200D2F128 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				46773A242C42C9F60015A7AB /* NotificationManager.swift */,
 				46E76E352C413C6B00D2F128 /* FeedbackManager.swift */,
 				46FAD7752C319EF1009704CD /* PersistenceManager.swift */,
 			);
@@ -246,6 +249,7 @@
 				46FAD76F2C315E65009704CD /* AddTaskView.swift in Sources */,
 				46FAD7712C31847C009704CD /* EditTaskView.swift in Sources */,
 				46FAD77C2C36D5B6009704CD /* PreviousTasksListView.swift in Sources */,
+				46773A252C42C9F70015A7AB /* NotificationManager.swift in Sources */,
 				46FAD77A2C36B044009704CD /* TaskRow.swift in Sources */,
 				4678BBF42C3B3DB6003D8259 /* MockTask.swift in Sources */,
 				46773A212C429A5F0015A7AB /* AddTaskButton.swift in Sources */,
