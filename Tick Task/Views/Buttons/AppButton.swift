@@ -28,6 +28,7 @@ struct AppButton: View {
             .foregroundStyle(fontColor)
             .padding(9)
             .background(buttonColor)
+            .background(Color.white)
             .clipShape(Capsule())
         } else {
             HStack {
@@ -36,7 +37,6 @@ struct AppButton: View {
                 }
                 Text(title)
             }
-            .bold()
             .frame(maxWidth: .infinity)
             .foregroundStyle(fontColor)
             .padding(9)

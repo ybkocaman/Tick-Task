@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PreviousTasksListView: View {
+    @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Task.dueDate, ascending: false)]) var tasks: FetchedResults<Task>
     
@@ -36,7 +37,21 @@ struct PreviousTasksListView: View {
             
 
         }
+        
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button {
+                    dismiss()
+                } label: {
+                    ToolbarBackButton()
+                }
+
+            }
+        }
+        
         .navigationTitle("Previous Tasks")
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden()
         .background(Color.mint.opacity(0.3))
     }
     

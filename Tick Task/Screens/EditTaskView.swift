@@ -93,14 +93,28 @@ struct EditTaskView: View {
 
             }
             .animation(.easeInOut, value: isDueTime)
-
-            .navigationTitle("Edit Task")
-            .navigationBarBackButtonHidden()
-            .alert("WARNING", isPresented: $isShowingAlert) {
+            .animation(.smooth, value: priority)
+            
+            .alert("Deleting Task", isPresented: $isShowingAlert) {
                 Button("Delete", role: .destructive) { deleteTask() }
             } message: {
-                Text("Are you sure you want to delete this task?")
+                Text("Would you like to proceed?")
             }
+            
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        ToolbarBackButton()
+                    }
+
+                }
+            }
+            
+            .navigationTitle("Edit Task")
+            .navigationBarBackButtonHidden()
+            .navigationBarTitleDisplayMode(.inline)
             .background(Color.mint.opacity(0.3))
         }
     }

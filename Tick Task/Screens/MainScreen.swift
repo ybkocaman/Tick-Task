@@ -19,28 +19,8 @@ struct MainScreen: View {
                 
                 TaskListView()
 
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        NavigationLink {
-                            AddTaskView()
-                        } label: {
-                            Image(systemName: "plus")
-                                .font(.largeTitle.bold())
-                                .foregroundStyle(.black)
-                                .padding()
-                                .background(Color.brown)
-                                .clipShape(Circle())
-                                .overlay {
-                                    Circle()
-                                        .stroke(.black, lineWidth: 3)
-                                }
-                                .padding(30)
-                        }
-                    }
-                }
-//                .ignoresSafeArea()
+                AddTaskButton()
+                
             }
             
             .background(Color.mint.opacity(0.3))

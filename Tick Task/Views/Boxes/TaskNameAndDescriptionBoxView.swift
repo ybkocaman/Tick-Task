@@ -11,8 +11,12 @@ struct TaskNameAndDescriptionBoxView: View {
     
     @Binding var name: String
     @Binding var taskDescription: String
-    @FocusState var focusedField: AddTaskView.Field?
+    @FocusState var focusedField: Field?
 
+    enum Field {
+        case name, description
+    }
+    
     var body: some View {
         VStack(alignment: .leading) {
             
@@ -41,6 +45,9 @@ struct TaskNameAndDescriptionBoxView: View {
                 .submitLabel(.done)
 
         }
+        .onTapGesture {
+            focusedField = nil
+        }
         .padding()
         .background(Color(.systemGray6))
         .overlay(
@@ -49,8 +56,10 @@ struct TaskNameAndDescriptionBoxView: View {
         )
         .clipShape(.rect(cornerRadius: 15))
         .onAppear {
-            DispatchQueue.main.async {
-                focusedField = .name
+            if name.isEmpty {
+                DispatchQueue.main.async {
+                    focusedField = .name
+                }
             }
         }
     }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46773A212C429A5F0015A7AB /* AddTaskButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46773A202C429A5F0015A7AB /* AddTaskButton.swift */; };
+		46773A232C429EDB0015A7AB /* ToolbarBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46773A222C429EDB0015A7AB /* ToolbarBackButton.swift */; };
 		4678BBF22C3B38ED003D8259 /* DayBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4678BBF12C3B38ED003D8259 /* DayBoxView.swift */; };
 		4678BBF42C3B3DB6003D8259 /* MockTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4678BBF32C3B3DB6003D8259 /* MockTask.swift */; };
 		4678BBF82C3D3F39003D8259 /* TaskNameAndDescriptionBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4678BBF72C3D3F39003D8259 /* TaskNameAndDescriptionBoxView.swift */; };
@@ -30,6 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		46773A202C429A5F0015A7AB /* AddTaskButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskButton.swift; sourceTree = "<group>"; };
+		46773A222C429EDB0015A7AB /* ToolbarBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarBackButton.swift; sourceTree = "<group>"; };
 		4678BBF12C3B38ED003D8259 /* DayBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayBoxView.swift; sourceTree = "<group>"; };
 		4678BBF32C3B3DB6003D8259 /* MockTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTask.swift; sourceTree = "<group>"; };
 		4678BBF72C3D3F39003D8259 /* TaskNameAndDescriptionBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskNameAndDescriptionBoxView.swift; sourceTree = "<group>"; };
@@ -80,6 +84,8 @@
 			isa = PBXGroup;
 			children = (
 				468714BF2C3DA513003DCD57 /* AppButton.swift */,
+				46773A202C429A5F0015A7AB /* AddTaskButton.swift */,
+				46773A222C429EDB0015A7AB /* ToolbarBackButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -242,6 +248,8 @@
 				46FAD77C2C36D5B6009704CD /* PreviousTasksListView.swift in Sources */,
 				46FAD77A2C36B044009704CD /* TaskRow.swift in Sources */,
 				4678BBF42C3B3DB6003D8259 /* MockTask.swift in Sources */,
+				46773A212C429A5F0015A7AB /* AddTaskButton.swift in Sources */,
+				46773A232C429EDB0015A7AB /* ToolbarBackButton.swift in Sources */,
 				4678BBFA2C3D4668003D8259 /* PriorityBoxView.swift in Sources */,
 				46FAD7762C319EF1009704CD /* PersistenceManager.swift in Sources */,
 				46FAD75A2C314AD1009704CD /* Tick_TaskApp.swift in Sources */,

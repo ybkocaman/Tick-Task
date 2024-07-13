@@ -13,28 +13,24 @@ struct AddTaskView: View {
     @FetchRequest(sortDescriptors: []) var tasks: FetchedResults<Task>
     
     @EnvironmentObject var feedbackManager: FeedbackManager
-        
+    
     @State private var name = ""
     @State private var taskDescription = ""
     @State private var dueDate = Date()
     @State private var priority: Int16 = 2
     @State private var isDueTime = false
     @State private var dueTime: Date? = nil
-    
-    @FocusState private var focusedField: Field?
-    
-    enum Field {
-        case name, description
-    }
-    
+
     
     var body: some View {
+        
         NavigationStack {
-            
+                
             ScrollView {
+                
                 TaskNameAndDescriptionBoxView(name: $name, taskDescription: $taskDescription)
                     .padding()
-
+                
                 PriorityBoxView(priority: $priority)
                     .padding(.horizontal)
                 TaskDateAndTimeBoxView(dueDate: $dueDate, isDueTime: $isDueTime, dueTime: $dueTime)
@@ -54,16 +50,30 @@ struct AddTaskView: View {
                     }
                 }
                 .padding()
-
+                
             }
-//            .onTapGesture {
-//                focusedField = nil
-//            }
-            .navigationTitle("Add a new task")
+            .scrollDismissesKeyboard(.immediately)
+            .animation(.easeInOut, value: isDueTime)
+            .animation(.smooth, value: priority)
+            
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        ToolbarBackButton()
+                    }
+
+                }
+            }
+            
+            .navigationTitle("Add New Task")
             .navigationBarBackButtonHidden()
+            .navigationBarTitleDisplayMode(.inline)
             .background(Color.mint.opacity(0.3))
         }
 
+        
     }
     
     func addTask() {
@@ -84,7 +94,7 @@ struct AddTaskView: View {
         dismiss()
     }
     
-
+    
 }
 
 extension View {
@@ -93,6 +103,6 @@ extension View {
     }
 }
 
-//#Preview {
-//    AddTaskView()
-//}
+#Preview {
+    AddTaskView()
+}
