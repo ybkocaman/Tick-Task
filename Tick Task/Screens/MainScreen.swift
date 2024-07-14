@@ -48,6 +48,7 @@ struct MainScreen: View {
                 alignment: .bottom
             )
             .animation(.easeInOut, value: feedbackManager.feedbackMessage)
+            
         }
         .onAppear {
             UNUserNotificationCenter.current().getNotificationSettings { settings in
@@ -58,6 +59,7 @@ struct MainScreen: View {
         }
         
         .environmentObject(feedbackManager)
+        
     }
     
     private func requestPermissions() {

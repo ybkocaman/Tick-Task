@@ -41,9 +41,9 @@ struct TaskDateAndTimeBoxView: View {
                     get: { dueTime ?? Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: dueDate)! },
                     set: { dueTime = $0 }
                 ), displayedComponents: .hourAndMinute)
-                .onAppear {
-                    UIDatePicker.appearance().minuteInterval = 15
-                }
+//                .onAppear {
+//                    UIDatePicker.appearance().minuteInterval = 15
+//                }
                 .padding(.vertical, 5)
 
             }

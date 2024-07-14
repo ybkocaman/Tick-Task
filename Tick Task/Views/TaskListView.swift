@@ -14,6 +14,8 @@ struct TaskListView: View {
     @State private var searchText = ""
             
     var body: some View {
+        
+        NavigationStack {
             if groupedTasks.isEmpty {
                 EmptyStateView(imageSystemName: "calendar.badge.plus", header: "No Upcoming Tasks", message: "You don't have any tasks scheduled. Add a new task to get started!")
             } else {
@@ -23,10 +25,10 @@ struct TaskListView: View {
                             .padding(.horizontal)
                             .padding(.vertical, 5)
                     }
-                    .searchable(text: $searchText, prompt: "Search task")
-//                    .padding(.top, 5)
+                    .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search task")
                 }
             }
+        }
     }
     
     private var groupedTasks: [Date: [Task]] {

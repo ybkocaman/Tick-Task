@@ -19,7 +19,9 @@ struct PreviousTasksListView: View {
         NavigationStack {
             
             if groupedTasks.keys.sorted(by: >).isEmpty {
+                
                 EmptyStateView(imageSystemName: "calendar.badge.clock", header: "No Previous Tasks")
+                
             } else {
                 
                 ScrollView {
@@ -34,7 +36,6 @@ struct PreviousTasksListView: View {
                 }
                 
             }
-            
 
         }
         

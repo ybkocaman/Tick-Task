@@ -37,7 +37,7 @@ class NotificationManager {
     
     
     func removeNotification(for task: Task) {
-        guard let taskId = task.id?.uuidString else { return }
+        guard let taskId = task.id?.uuidString else { return }        
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [taskId])
     }
     

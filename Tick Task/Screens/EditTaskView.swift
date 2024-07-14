@@ -119,8 +119,9 @@ struct EditTaskView: View {
         }
     }
     
+    
     private func saveTask() {
-        if let existingDueTime = task.dueTime {
+        if task.isDueTime {
             NotificationManager.shared.removeNotification(for: task)
         }
         
@@ -129,9 +130,13 @@ struct EditTaskView: View {
         task.dueDate = dueDate
         task.priority = priority
         task.isDueTime = isDueTime
-
-        if isDueTime {
-            task.dueTime = dueTime
+        
+        if isDueTime, let dueTime = dueTime {
+            var components = Calendar.current.dateComponents([.hour, .minute], from: dueTime)
+            components.year = Calendar.current.component(.year, from: dueDate)
+            components.month = Calendar.current.component(.month, from: dueDate)
+            components.day = Calendar.current.component(.day, from: dueDate)
+            task.dueTime = Calendar.current.date(from: components)
         } else {
             task.dueTime = nil
         }
@@ -143,14 +148,21 @@ struct EditTaskView: View {
             NotificationManager.shared.scheduleNotification(for: task)
         }
         
+        NotificationManager.shared.scheduleDailySummaryNotification(moc: moc)
+        NotificationManager.shared.scheduleEveningSummaryNotification(moc: moc)
+        
         dismiss()
     }
     
+    
     private func deleteTask() {
+        if task.isDueTime {
+            NotificationManager.shared.removeNotification(for: task)
+        }
         moc.delete(task)
         try? moc.save()
         feedbackManager.showFeedback(message: "Task deleted")
-        NotificationManager.shared.removeNotification(for: task)
+
         dismiss()
     }
     

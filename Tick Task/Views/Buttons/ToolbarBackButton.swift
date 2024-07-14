@@ -13,8 +13,7 @@ struct ToolbarBackButton: View {
             Image(systemName: "chevron.left")
             Text("Back")
         }
-        .bold()
-        .foregroundStyle(.purple)
+        .foregroundStyle(.cyan)
     }
 }
 

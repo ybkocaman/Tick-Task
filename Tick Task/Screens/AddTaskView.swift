@@ -16,6 +16,7 @@ struct AddTaskView: View {
     
     @State private var name = ""
     @State private var taskDescription = ""
+    
     @State private var dueDate = Date()
     @State private var priority: Int16 = 2
     @State private var isDueTime = false
@@ -79,19 +80,26 @@ struct AddTaskView: View {
     func addTask() {
         let newTask = Task(context: moc)
         newTask.id = UUID()
-        if name != "" {
-            newTask.name = name
-        } else {
-            newTask.name = "New Task"
-        }
+        newTask.name = name.isEmpty ? "New Task" : name
         newTask.isCompleted = false
         newTask.taskDescription = taskDescription
         newTask.dueDate = dueDate
         newTask.priority = Int16(priority)
         newTask.isDueTime = isDueTime
-        newTask.dueTime = dueTime
+        
+        if isDueTime, let dueTime = dueTime {
+            var components = Calendar.current.dateComponents([.hour, .minute], from: dueTime)
+            components.year = Calendar.current.component(.year, from: dueDate)
+            components.month = Calendar.current.component(.month, from: dueDate)
+            components.day = Calendar.current.component(.day, from: dueDate)
+            newTask.dueTime = Calendar.current.date(from: components)
+        } else {
+            newTask.dueTime = nil
+        }
+        
         try? moc.save()
         feedbackManager.showFeedback(message: "Task added")
+
         if newTask.isDueTime {
             NotificationManager.shared.scheduleNotification(for: newTask)
         }
