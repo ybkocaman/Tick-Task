@@ -37,19 +37,12 @@ struct AddTaskView: View {
                 TaskDateAndTimeBoxView(dueDate: $dueDate, isDueTime: $isDueTime, dueTime: $dueTime)
                     .padding()
                 
-                VStack(spacing: 15) {
-                    Button {
-                        addTask()
-                    } label: {
-                        AppButton(title: "Add Task", isFilledBackground: true, fontColor: .white, buttonColor: .blue)
-                    }
-                    
-                    Button {
-                        dismiss()
-                    } label: {
-                        AppButton(title: "Cancel", isFilledBackground: false, fontColor: .black, buttonColor: .black)
-                    }
+                Button {
+                    addTask()
+                } label: {
+                    AppButton(title: "Add Task", isFilledBackground: true, fontColor: .white, buttonColor: .blue)
                 }
+
                 .padding()
                 
             }

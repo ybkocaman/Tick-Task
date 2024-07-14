@@ -31,6 +31,7 @@ struct EditTaskView: View {
         }
     }
     @State private var dueTime: Date?
+    @State private var isCompleted: Bool
     
     @State private var isShowingAlert = false
     
@@ -41,6 +42,7 @@ struct EditTaskView: View {
         _priority = State(initialValue: task.priority)
         _isDueTime = State(initialValue: task.isDueTime)
         _dueTime = State(initialValue: task.dueTime)
+        _isCompleted = State(initialValue: task.isCompleted)
         self.task = task
     }
     
@@ -59,17 +61,7 @@ struct EditTaskView: View {
                     .padding()
                 
                     VStack(spacing: 15) {
-                        
-                        Button {
-                            task.isCompleted.toggle()
-                        } label: {
-                            if task.isCompleted {
-                                AppButton(title: "Mark Uncompleted", systemName: "square", isFilledBackground: true, fontColor: .white, buttonColor: .black)
-                            } else {
-                                AppButton(title: "Mark Completed", systemName: "checkmark.square", isFilledBackground: true, fontColor: .white, buttonColor: .green)
-                            }
-                        }
-                        
+
                         Button {
                             saveTask()
                         } label: {
@@ -81,12 +73,7 @@ struct EditTaskView: View {
                         } label: {
                             AppButton(title: "Delete Task", systemName: "trash", isFilledBackground: false, fontColor: .red, buttonColor: .red)
                         }
-                        
-                        Button {
-                            dismiss()
-                        } label: {
-                            AppButton(title: "Cancel", isFilledBackground: false, fontColor: .black, buttonColor: .black)
-                        }
+
                         
                     }
                     .padding()
@@ -130,6 +117,7 @@ struct EditTaskView: View {
         task.dueDate = dueDate
         task.priority = priority
         task.isDueTime = isDueTime
+        task.isCompleted = isCompleted
         
         if isDueTime, let dueTime = dueTime {
             var components = Calendar.current.dateComponents([.hour, .minute], from: dueTime)

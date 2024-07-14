@@ -24,15 +24,30 @@ struct TaskDateAndTimeBoxView: View {
             Divider()
                 .padding(.vertical, 5)
             
-            Toggle("Has Due Time", isOn: $isDueTime)
-                .padding(.bottom, 5)
-                .onChange(of: isDueTime) {
-                    if isDueTime {
-                        dueTime = Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: dueDate)
-                    } else {
-                        dueTime = nil
+            if #available(iOS 17.0, *) {
+                
+                Toggle("Has Due Time", isOn: $isDueTime)
+                    .padding(.bottom, 5)
+                    .onChange(of: isDueTime) {
+                        if isDueTime {
+                            dueTime = Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: dueDate)
+                        } else {
+                            dueTime = nil
+                        }
                     }
-                }
+                
+            } else {
+                
+                Toggle("Has Due Time", isOn: $isDueTime)
+                    .padding(.bottom, 5)
+                    .onChange(of: isDueTime, perform: { value in
+                        if value {
+                            dueTime = Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: dueDate)
+                        } else {
+                            dueTime = nil
+                        }
+                    })
+            }
             
             if isDueTime {
                 Divider()
@@ -41,9 +56,9 @@ struct TaskDateAndTimeBoxView: View {
                     get: { dueTime ?? Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: dueDate)! },
                     set: { dueTime = $0 }
                 ), displayedComponents: .hourAndMinute)
-//                .onAppear {
-//                    UIDatePicker.appearance().minuteInterval = 15
-//                }
+                .onAppear {
+                    UIDatePicker.appearance().minuteInterval = 15
+                }
                 .padding(.vertical, 5)
 
             }
@@ -57,9 +72,8 @@ struct TaskDateAndTimeBoxView: View {
                 .stroke(Color.black, lineWidth: 3)
         )
         .clipShape(.rect(cornerRadius: 15))
-//        .animation(.easeInOut, value: isDueTime)
-
     }
+    
 }
 
 #Preview {
