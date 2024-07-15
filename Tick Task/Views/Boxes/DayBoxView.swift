@@ -60,7 +60,7 @@ struct DayBoxView: View {
             
             if !isFolded {
                 ForEach(sortedTasks) { task in
-                    TaskRow(task: task)
+                    TaskRowView(task: task)
                 }
                 .animation(.easeInOut(duration: 0.5), value: sortedTasks)
             }

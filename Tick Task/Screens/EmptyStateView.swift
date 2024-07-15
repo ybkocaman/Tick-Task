@@ -14,6 +14,7 @@ struct EmptyStateView: View {
     var message: String?
     
     var body: some View {
+        
         VStack {
             
             Image(systemName: imageSystemName)

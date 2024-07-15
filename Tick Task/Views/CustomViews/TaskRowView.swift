@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TaskRow: View {
+struct TaskRowView: View {
     
     @Environment(\.managedObjectContext) var moc
     @ObservedObject var task: Task

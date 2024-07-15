@@ -5,23 +5,27 @@
 //  Created by Yusuf Burak on 30/06/2024.
 //
 
+import StoreKit
 import SwiftUI
 
 struct AddTaskView: View {
+    
     @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) var moc
+    @Environment(\.requestReview) private var requestReview
     @FetchRequest(sortDescriptors: []) var tasks: FetchedResults<Task>
     
     @EnvironmentObject var feedbackManager: FeedbackManager
     
     @State private var name = ""
     @State private var taskDescription = ""
-    
     @State private var dueDate = Date()
     @State private var priority: Int16 = 2
     @State private var isDueTime = false
     @State private var dueTime: Date? = nil
-
+    
+    @AppStorage("taskCount") private var taskCount = 0
+    @AppStorage("reviewRequested") private var reviewRequested = false
     
     var body: some View {
         
@@ -57,7 +61,6 @@ struct AddTaskView: View {
                     } label: {
                         ToolbarBackButton()
                     }
-
                 }
             }
             
@@ -66,11 +69,10 @@ struct AddTaskView: View {
             .navigationBarTitleDisplayMode(.inline)
             .background(Color.mint.opacity(0.3))
         }
-
         
     }
     
-    func addTask() {
+    private func addTask() {
         let newTask = Task(context: moc)
         newTask.id = UUID()
         newTask.name = name.isEmpty ? "New Task" : name
@@ -95,17 +97,32 @@ struct AddTaskView: View {
 
         if newTask.isDueTime {
             NotificationManager.shared.scheduleNotification(for: newTask)
+            if UserDefaults.standard.bool(forKey: "NotificationPermissionRequested") == false {
+                requestPermissions()
+            }
         }
+        
+        if !reviewRequested {
+            if taskCount < 10 {
+                taskCount += 1
+                print("Task count: \(taskCount)")
+            } else {
+                requestReview()
+                reviewRequested = true
+            }
+        }
+        
         dismiss()
     }
     
-    
-}
-
-extension View {
-    func hideKeyboard() {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    private func requestPermissions() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { _, _ in
+            DispatchQueue.main.async {
+                UserDefaults.standard.set(true, forKey: "NotificationPermissionRequested")
+            }
+        }
     }
+    
 }
 
 #Preview {

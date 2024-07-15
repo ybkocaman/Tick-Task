@@ -142,15 +142,14 @@ struct EditTaskView: View {
         dismiss()
     }
     
-    
     private func deleteTask() {
         if task.isDueTime {
             NotificationManager.shared.removeNotification(for: task)
         }
+        
         moc.delete(task)
         try? moc.save()
         feedbackManager.showFeedback(message: "Task deleted")
-
         dismiss()
     }
     

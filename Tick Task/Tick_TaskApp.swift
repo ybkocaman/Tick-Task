@@ -5,10 +5,12 @@
 //  Created by Yusuf Burak on 30/06/2024.
 //
 
+import StoreKit
 import SwiftUI
 
 @main
 struct Tick_TaskApp: App {
+    
     @StateObject private var dataController = PersistenceManager()
     
     var body: some Scene {
@@ -33,5 +35,5 @@ struct Tick_TaskApp: App {
             scheduleNotifications()
         }
     }
-    
+
 }

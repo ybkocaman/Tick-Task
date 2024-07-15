@@ -17,7 +17,7 @@ struct TaskListView: View {
         
         NavigationStack {
             if groupedTasks.isEmpty {
-                EmptyStateView(imageSystemName: "calendar.badge.plus", header: "No Upcoming Tasks", message: "You don't have any tasks scheduled.Add a new task to get started!")
+                EmptyStateView(imageSystemName: "calendar.badge.plus", header: "No Upcoming Tasks", message: "You don't have any tasks scheduled. Add a new task to get started!")
             } else {
                 ScrollView {
                     ForEach(groupedTasks.keys.sorted(), id: \.self) { date in

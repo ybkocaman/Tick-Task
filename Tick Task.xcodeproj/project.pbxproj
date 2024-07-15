@@ -11,7 +11,6 @@
 		46773A232C429EDB0015A7AB /* ToolbarBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46773A222C429EDB0015A7AB /* ToolbarBackButton.swift */; };
 		46773A252C42C9F70015A7AB /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46773A242C42C9F60015A7AB /* NotificationManager.swift */; };
 		4678BBF22C3B38ED003D8259 /* DayBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4678BBF12C3B38ED003D8259 /* DayBoxView.swift */; };
-		4678BBF42C3B3DB6003D8259 /* MockTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4678BBF32C3B3DB6003D8259 /* MockTask.swift */; };
 		4678BBF82C3D3F39003D8259 /* TaskNameAndDescriptionBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4678BBF72C3D3F39003D8259 /* TaskNameAndDescriptionBoxView.swift */; };
 		4678BBFA2C3D4668003D8259 /* PriorityBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4678BBF92C3D4668003D8259 /* PriorityBoxView.swift */; };
 		4678BBFC2C3D4772003D8259 /* TaskDateAndTimeBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4678BBFB2C3D4772003D8259 /* TaskDateAndTimeBoxView.swift */; };
@@ -28,7 +27,7 @@
 		46FAD7742C319DEE009704CD /* TickTask.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 46FAD7722C319DEE009704CD /* TickTask.xcdatamodeld */; };
 		46FAD7762C319EF1009704CD /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FAD7752C319EF1009704CD /* PersistenceManager.swift */; };
 		46FAD7782C341ACD009704CD /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FAD7772C341ACD009704CD /* TaskListView.swift */; };
-		46FAD77A2C36B044009704CD /* TaskRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FAD7792C36B044009704CD /* TaskRow.swift */; };
+		46FAD77A2C36B044009704CD /* TaskRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FAD7792C36B044009704CD /* TaskRowView.swift */; };
 		46FAD77C2C36D5B6009704CD /* PreviousTasksListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FAD77B2C36D5B6009704CD /* PreviousTasksListView.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +36,6 @@
 		46773A222C429EDB0015A7AB /* ToolbarBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarBackButton.swift; sourceTree = "<group>"; };
 		46773A242C42C9F60015A7AB /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		4678BBF12C3B38ED003D8259 /* DayBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayBoxView.swift; sourceTree = "<group>"; };
-		4678BBF32C3B3DB6003D8259 /* MockTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTask.swift; sourceTree = "<group>"; };
 		4678BBF72C3D3F39003D8259 /* TaskNameAndDescriptionBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskNameAndDescriptionBoxView.swift; sourceTree = "<group>"; };
 		4678BBF92C3D4668003D8259 /* PriorityBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityBoxView.swift; sourceTree = "<group>"; };
 		4678BBFB2C3D4772003D8259 /* TaskDateAndTimeBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDateAndTimeBoxView.swift; sourceTree = "<group>"; };
@@ -55,7 +53,7 @@
 		46FAD7732C319DEE009704CD /* TickTask.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TickTask.xcdatamodel; sourceTree = "<group>"; };
 		46FAD7752C319EF1009704CD /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		46FAD7772C341ACD009704CD /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
-		46FAD7792C36B044009704CD /* TaskRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRow.swift; sourceTree = "<group>"; };
+		46FAD7792C36B044009704CD /* TaskRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRowView.swift; sourceTree = "<group>"; };
 		46FAD77B2C36D5B6009704CD /* PreviousTasksListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousTasksListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,6 +68,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4666EC0C2C44227B002D040C /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				46E76E372C413F0800D2F128 /* FeedbackView.swift */,
+				46FAD7772C341ACD009704CD /* TaskListView.swift */,
+				46FAD7792C36B044009704CD /* TaskRowView.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
 		4678BC052C3D5149003D8259 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,11 +141,10 @@
 			isa = PBXGroup;
 			children = (
 				46FAD7722C319DEE009704CD /* TickTask.xcdatamodeld */,
+				46FAD7592C314AD1009704CD /* Tick_TaskApp.swift */,
 				46E76E392C41400200D2F128 /* Managers */,
 				4678BC052C3D5149003D8259 /* Screens */,
-				46FAD7672C314C4D009704CD /* Model */,
 				46FAD7682C314C56009704CD /* Views */,
-				46FAD7592C314AD1009704CD /* Tick_TaskApp.swift */,
 				46FAD75D2C314AD3009704CD /* Assets.xcassets */,
 				46FAD75F2C314AD3009704CD /* Preview Content */,
 			);
@@ -152,20 +159,10 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		46FAD7672C314C4D009704CD /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				4678BBF32C3B3DB6003D8259 /* MockTask.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		46FAD7682C314C56009704CD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				46E76E372C413F0800D2F128 /* FeedbackView.swift */,
-				46FAD7772C341ACD009704CD /* TaskListView.swift */,
-				46FAD7792C36B044009704CD /* TaskRow.swift */,
+				4666EC0C2C44227B002D040C /* CustomViews */,
 				4678BC072C3D51BA003D8259 /* Boxes */,
 				4678BC062C3D5194003D8259 /* Buttons */,
 			);
@@ -250,8 +247,7 @@
 				46FAD7712C31847C009704CD /* EditTaskView.swift in Sources */,
 				46FAD77C2C36D5B6009704CD /* PreviousTasksListView.swift in Sources */,
 				46773A252C42C9F70015A7AB /* NotificationManager.swift in Sources */,
-				46FAD77A2C36B044009704CD /* TaskRow.swift in Sources */,
-				4678BBF42C3B3DB6003D8259 /* MockTask.swift in Sources */,
+				46FAD77A2C36B044009704CD /* TaskRowView.swift in Sources */,
 				46773A212C429A5F0015A7AB /* AddTaskButton.swift in Sources */,
 				46773A232C429EDB0015A7AB /* ToolbarBackButton.swift in Sources */,
 				4678BBFA2C3D4668003D8259 /* PriorityBoxView.swift in Sources */,
@@ -399,12 +395,15 @@
 				DEVELOPMENT_TEAM = DXR5DNXSQL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Tick Task";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -433,12 +432,15 @@
 				DEVELOPMENT_TEAM = DXR5DNXSQL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Tick Task";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
