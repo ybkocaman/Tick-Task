@@ -1,3 +1,7 @@
+<img src="https://github.com/ybkocaman/tick-task/blob/main/app_icon.png?raw=true" alt="Main Screen" width="30%">
+
+
+
 # Tick Task 📋
 
 Tick Task is a task management application designed to help users organise, prioritise, and manage their daily tasks effectively. Users can create tasks with detailed descriptions, set due dates and times, and prioritize their importance. The app provides a clear view of upcoming tasks, allowing users to track their progress and stay on top of their schedule. Notifications and reminders ensure that users are alerted to important deadlines and daily summaries, enhancing productivity and time management.
