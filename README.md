@@ -111,12 +111,12 @@ Through the development of Tick Task, I have demonstrated the following skills a
 
 2. **Editing a Task**:
    - Select a task from the list to view its details.
-   - Tap the edit button to modify the task.
+   - Tap the task to modify it.
    - Save the changes to update the task details.
 
 3. **Marking a Task as Completed**:
-   - Swipe left on a task in the list to reveal the "Complete" button.
-   - Tap the button to mark the task as completed.
+   - Select a task from the list to mark completed.
+   - Tap the box to mark the task as completed/uncompleted.
 
 4. **Viewing Tasks**:
    - Upcoming tasks are displayed on the main screen.
