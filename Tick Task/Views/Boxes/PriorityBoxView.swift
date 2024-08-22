@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PriorityBoxView: View {
-    
+    @Environment(\.colorScheme) private var colorScheme
     @Binding var priority: Int16
     
     var body: some View {
@@ -16,7 +16,6 @@ struct PriorityBoxView: View {
         VStack(alignment: .leading) {
             Text("Priority")
                 .bold()
-//                .foregroundStyle(.white)
             Spacer()
             Picker("Priority", selection: $priority) {
                 Text("High")
@@ -31,6 +30,9 @@ struct PriorityBoxView: View {
             .tint(.white)
             .pickerStyle(.segmented)
         }
+        .environment(\.colorScheme, .light)
+
+        .foregroundStyle(.black)
         .padding(.horizontal)
         .padding(.vertical, 11)
         .background(getPriorityColor(priority: priority).opacity(0.5))

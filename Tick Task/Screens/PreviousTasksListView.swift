@@ -53,7 +53,7 @@ struct PreviousTasksListView: View {
         .navigationTitle("Previous Tasks")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
-        .background(Color.mint.opacity(0.3))
+        .background(Color("AppBackground"))
     }
     
     private var groupedTasks: [Date: [Task]] {

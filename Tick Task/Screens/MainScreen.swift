@@ -11,6 +11,8 @@ import UserNotifications
 struct MainScreen: View {
 
     @StateObject private var feedbackManager = FeedbackManager()
+    @Environment(\.colorScheme) private var colorScheme
+    @StateObject private var themeManager = ThemeManager()
     
     var body: some View {
                 
@@ -24,11 +26,28 @@ struct MainScreen: View {
 
             }
             
-            .background(Color.mint.opacity(0.3))
+            .background(Color("AppBackground"))
             .navigationTitle("Tick Task")
             .toolbar {
                             
                 Menu {
+                    
+                    Menu {
+                        ForEach(Theme.allCases) { theme in
+                            Button {
+                                themeManager.selectedTheme = theme
+                            } label: {
+                                if themeManager.selectedTheme == theme {
+                                    Label(theme.rawValue, systemImage: "checkmark")
+                                } else {
+                                    Text(theme.rawValue)
+                                }
+                            }
+                        }
+                    } label: {
+                        Text("Theme")
+                        Image(systemName: "moonphase.last.quarter.inverse")
+                    }
                     
                     NavigationLink {
                         PreviousTasksListView()
@@ -42,7 +61,7 @@ struct MainScreen: View {
                 } label: {
                     Image(systemName: "ellipsis")
                         .bold()
-                        .foregroundStyle(.black)
+                        .foregroundStyle(colorScheme == .light ? .black : .white)
                 }
                 
             }

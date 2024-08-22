@@ -16,19 +16,20 @@ struct TaskListView: View {
     var body: some View {
         
         NavigationStack {
-            if groupedTasks.isEmpty {
-                EmptyStateView(imageSystemName: "calendar.badge.plus", header: "No Upcoming Tasks", message: "You don't have any tasks scheduled. Add a new task to get started!")
-            } else {
-                ScrollView {
+            ScrollView {
+                if groupedTasks.isEmpty {
+                    EmptyStateView(imageSystemName: "calendar.badge.plus", header: "No Upcoming Tasks", message: "You don't have any tasks scheduled. Add a new task to get started!")
+                } else {
                     ForEach(groupedTasks.keys.sorted(), id: \.self) { date in
                         DayBoxView(tasks: groupedTasks[date] ?? [], date: date)
                             .padding(.horizontal)
                             .padding(.vertical, 5)
                     }
-                    .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search task")
                 }
             }
+            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search task")
         }
+
     }
     
     private var groupedTasks: [Date: [Task]] {

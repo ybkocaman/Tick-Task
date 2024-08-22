@@ -10,6 +10,7 @@ import SwiftUI
 
 struct DayBoxView: View {
     
+    @Environment(\.colorScheme) private var colorScheme
     @Environment(\.managedObjectContext) private var moc
     @FetchRequest var taskGroup: FetchedResults<TaskGroup>
     
@@ -65,9 +66,9 @@ struct DayBoxView: View {
                 .animation(.easeInOut(duration: 0.5), value: sortedTasks)
             }
         }
-
+        
         .padding()
-        .background(Color(.systemGray6))
+        .background(Color("DayBoxColor"))
         .clipShape(.rect(cornerRadius: 15))
         .shadow(radius: 5)
     }

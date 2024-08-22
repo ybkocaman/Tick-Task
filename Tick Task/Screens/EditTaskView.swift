@@ -102,7 +102,7 @@ struct EditTaskView: View {
             .navigationTitle("Edit Task")
             .navigationBarBackButtonHidden()
             .navigationBarTitleDisplayMode(.inline)
-            .background(Color.mint.opacity(0.3))
+            .background(Color("AppBackground"))
         }
     }
     

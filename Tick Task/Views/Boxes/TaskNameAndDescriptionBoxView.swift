@@ -39,17 +39,20 @@ struct TaskNameAndDescriptionBoxView: View {
                 .bold()
             TextField("Enter Task Description Here...", text: $taskDescription)
                 .padding(8)
+                .tint(.gray)
                 .background(Color.white)
                 .clipShape(.rect(cornerRadius: 10))
                 .focused($focusedField, equals: .description)
                 .submitLabel(.done)
-
         }
+        .environment(\.colorScheme, .light)
+        
         .onTapGesture {
             focusedField = nil
         }
         .padding()
-        .background(Color(.systemGray6))
+        .background(Color("BoxBackground"))
+        .foregroundStyle(.black)
         .overlay(
             RoundedRectangle(cornerSize: CGSize(width: 15, height: 15))
                 .stroke(Color.black, lineWidth: 3)

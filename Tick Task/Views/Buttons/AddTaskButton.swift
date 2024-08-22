@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddTaskButton: View {
-    
+        
     var body: some View {
         
         VStack {
@@ -22,6 +22,7 @@ struct AddTaskButton: View {
                         .font(.title)
                         .foregroundStyle(.black)
                         .padding()
+
                         .background(Color.yellow.opacity(0.3))
                         .background(Color.white)
                         .clipShape(RoundedRectangle(cornerRadius: 15))

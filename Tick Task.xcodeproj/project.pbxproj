@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46178F7C2C77D76E00359CD4 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46178F7B2C77D76E00359CD4 /* ThemeManager.swift */; };
 		46773A212C429A5F0015A7AB /* AddTaskButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46773A202C429A5F0015A7AB /* AddTaskButton.swift */; };
 		46773A232C429EDB0015A7AB /* ToolbarBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46773A222C429EDB0015A7AB /* ToolbarBackButton.swift */; };
 		46773A252C42C9F70015A7AB /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46773A242C42C9F60015A7AB /* NotificationManager.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		46178F7B2C77D76E00359CD4 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		46773A202C429A5F0015A7AB /* AddTaskButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskButton.swift; sourceTree = "<group>"; };
 		46773A222C429EDB0015A7AB /* ToolbarBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarBackButton.swift; sourceTree = "<group>"; };
 		46773A242C42C9F60015A7AB /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				46773A242C42C9F60015A7AB /* NotificationManager.swift */,
 				46E76E352C413C6B00D2F128 /* FeedbackManager.swift */,
 				46FAD7752C319EF1009704CD /* PersistenceManager.swift */,
+				46178F7B2C77D76E00359CD4 /* ThemeManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				46FAD7782C341ACD009704CD /* TaskListView.swift in Sources */,
 				468714C02C3DA513003DCD57 /* AppButton.swift in Sources */,
 				46E76E382C413F0800D2F128 /* FeedbackView.swift in Sources */,
+				46178F7C2C77D76E00359CD4 /* ThemeManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

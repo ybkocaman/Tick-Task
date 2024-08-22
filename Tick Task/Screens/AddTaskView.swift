@@ -67,7 +67,7 @@ struct AddTaskView: View {
             .navigationTitle("Add New Task")
             .navigationBarBackButtonHidden()
             .navigationBarTitleDisplayMode(.inline)
-            .background(Color.mint.opacity(0.3))
+            .background(Color("AppBackground"))
         }
         
     }

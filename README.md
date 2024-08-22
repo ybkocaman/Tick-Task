@@ -16,6 +16,8 @@ Tick Task is a task management application designed to help users organise, prio
 - **Notifications**: Receive reminders for your tasks and daily summaries to stay on track.
 - **Previous Tasks**: Review and manage tasks from past due dates to ensure nothing is missed.
 - **User-Friendly Interface**: Intuitive design that makes task management simple and efficient.
+- **Theme Options**: Choose between Light, Dark, or System themes directly from the menu bar.
+- **Dark Mode**: Implemented dark mode for a better user experience in low-light environments.
 - **App Review Request**: Prompt users to leave a review after adding their 10th task to enhance app visibility and feedback.
 - **Privacy**: No personal information is collected. The app does not require any sign-in or personal data.
 
@@ -139,4 +141,3 @@ Planned improvements for Tick Task include:
 - **Cloud Sync**: Sync tasks across multiple devices using iCloud.
 - **Collaboration Features**: Allow users to share tasks and collaborate with others.
 - **Advanced Notifications**: Implement more customizable and advanced notification settings.
-- **Dark Mode**: Provide a dark mode option for better user experience in low-light environments.

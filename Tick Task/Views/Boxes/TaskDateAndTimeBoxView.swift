@@ -47,6 +47,7 @@ struct TaskDateAndTimeBoxView: View {
                             dueTime = nil
                         }
                     })
+
             }
             
             if isDueTime {
@@ -64,9 +65,11 @@ struct TaskDateAndTimeBoxView: View {
             }
             
         }
+        .environment(\.colorScheme, .light)
+
         .padding(.horizontal)
         .padding(.vertical, 10)
-        .background(Color(.systemGray6))
+        .background(Color("BoxBackground"))
         .overlay(
             RoundedRectangle(cornerSize: CGSize(width: 15, height: 15))
                 .stroke(Color.black, lineWidth: 3)

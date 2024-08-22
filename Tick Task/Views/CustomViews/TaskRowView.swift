@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TaskRowView: View {
-    
+    @Environment(\.colorScheme) private var colorScheme
     @Environment(\.managedObjectContext) var moc
     @ObservedObject var task: Task
     
@@ -20,7 +20,7 @@ struct TaskRowView: View {
             HStack {
 
                 Image(systemName: task.isCompleted ? "checkmark.square" : "square")
-                    .foregroundStyle(.gray)
+                    .foregroundStyle(colorScheme == .light ? .gray : .black)
                     .font(.title)
                     .onTapGesture { toggleTaskCompletion(task) }
                 
@@ -59,7 +59,7 @@ struct TaskRowView: View {
             .opacity(task.isCompleted ? 0.5 : 1)
             .frame(maxWidth: .infinity)
             .padding(10)
-            .background(task.isCompleted ? .gray.opacity(0.1) : .white)
+            .background(Color(task.isCompleted ? "CompletedTaskColor" : "UncompletedTaskColor"))
             .overlay(
                 RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
                     .stroke(Color.gray.opacity(0.3), lineWidth: 3)
